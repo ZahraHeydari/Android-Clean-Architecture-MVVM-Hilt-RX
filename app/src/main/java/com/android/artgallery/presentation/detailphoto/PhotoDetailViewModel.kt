@@ -6,11 +6,12 @@ import com.android.artgallery.data.Photo
 import com.android.artgallery.domain.usecase.GetPhotoDetailUseCase
 import javax.inject.Inject
 
-class PhotoDetailViewModel@Inject constructor(private val getPhotoDetailUseCase: GetPhotoDetailUseCase) : ViewModel() {
+class PhotoDetailViewModel @Inject constructor(private val getPhotoDetailUseCase: GetPhotoDetailUseCase) : ViewModel() {
 
     private val TAG = PhotoDetailViewModel::class.java.simpleName
     val photoData = MutableLiveData<Photo>()
     val isLoad = MutableLiveData<Boolean>()
+    val isFavorite = MutableLiveData<Boolean>()
 
     init {
         isLoad.value = false
@@ -28,5 +29,20 @@ class PhotoDetailViewModel@Inject constructor(private val getPhotoDetailUseCase:
                 it.printStackTrace()
             }
         )
+    }
+
+    fun updateFavoriteStatus() {
+        if (photoData.value == null) return
+        if (isFavorite.value == true) {
+            isFavorite.value = false
+            getPhotoDetailUseCase.deleteAsFavorite(photoData.value!!)
+        } else {
+            isFavorite.value = true
+            getPhotoDetailUseCase.addAsFavorite(photoData.value!!)
+        }
+    }
+
+    fun checkFavoriteStatus(photoId: Long) {
+        isFavorite.value = getPhotoDetailUseCase.isFavorite(photoId)
     }
 }

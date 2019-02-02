@@ -99,12 +99,12 @@
 
         </android.support.v4.widget.NestedScrollView>
 
-        <!--app:setFloatingActionButtonSrc="@{recipeViewModel}"-->
         <android.support.design.widget.FloatingActionButton
                 android:id="@+id/detail_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                app:srcCompat="@drawable/ic_star_empty_white_vector"
                 app:layout_anchor="@id/detail_app_bar_layout"
                 app:layout_anchorGravity="bottom|end"/>
 

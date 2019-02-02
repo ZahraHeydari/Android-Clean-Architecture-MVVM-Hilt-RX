@@ -31,8 +31,9 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
         }
         activityPhotoDetailBinding.photoDetailViewModel = viewModel
 
-        val photoId = intent?.extras?.getLong(KEY_PHOTO_ID)
+        val photoId = intent?.extras?.getLong(KEY_PHOTO_ID) ?: return
         viewModel.getDetail(photoId)
+        viewModel.checkFavoriteStatus(photoId)
 
         viewModel.photoData.observe(this, Observer {
             activityPhotoDetailBinding.detailTitleTextView.setText(it?.title)
@@ -41,8 +42,23 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
                     .load(it?.url)
                     .into(activityPhotoDetailBinding.detailToolbarImageView)
             } catch (e: Exception) {
+                e.printStackTrace()
             }
         })
+
+
+        viewModel.isFavorite.observe(this, Observer {
+            if (it != true) {
+                activityPhotoDetailBinding.detailFab.setImageResource(R.drawable.ic_star_empty_white_vector)
+            } else {
+                activityPhotoDetailBinding.detailFab.setImageResource(R.drawable.ic_star_full_vector)
+            }
+        })
+
+        activityPhotoDetailBinding.detailFab.setOnClickListener {
+            viewModel.updateFavoriteStatus()
+        }
+
 
     }
 
