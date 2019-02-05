@@ -3,7 +3,7 @@
     <data>
 
         <import type="android.view.View"/>
-        
+
         <variable name="photoViewModel" type="com.android.artgallery.presentation.photo.PhotoViewModel"/>
     </data>
 
@@ -37,6 +37,13 @@
                     android:ellipsize="end"
                     android:textColor="@color/colorTextPrimary"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <ProgressBar
+                    android:id="@+id/photo_progress_bar"
+                    android:layout_centerInParent="true"
+                    style="@style/Base.Widget.AppCompat.ProgressBar"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
         </RelativeLayout>

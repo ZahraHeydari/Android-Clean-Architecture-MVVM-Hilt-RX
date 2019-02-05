@@ -4,13 +4,18 @@ import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.android.artgallery.R
 import com.android.artgallery.data.Photo
-import com.android.artgallery.databinding.HolderAlbumBinding
 import com.android.artgallery.databinding.HolderPhotoBinding
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.util.ArrayList
+
+
+
+
 
 /**
  * [android.support.v7.widget.RecyclerView.Adapter] to adapt
@@ -69,12 +74,22 @@ internal class PhotosAdapter(private val listener: OnPhotosAdapterListener) :
         fun onBind(photo: Photo) {
             val holderPhotoBinding = this.dataBinding as HolderPhotoBinding
             holderPhotoBinding.photoViewModel = PhotoViewModel(photo)
-
+            holderPhotoBinding.photoProgressBar.visibility = View.VISIBLE
             try {
                 Picasso.get()
                     .load(photo.url)
                     .placeholder(android.R.color.white)
-                    .into(holderPhotoBinding.photoImageView)
+                    .into(holderPhotoBinding.photoImageView, object : Callback{
+
+                        override fun onError(e: java.lang.Exception?) {
+                            e?.printStackTrace()
+
+                        }
+
+                        override fun onSuccess() {
+                            holderPhotoBinding.photoProgressBar.visibility = View.GONE
+                        }
+                    })
             } catch (e: Exception) {
                 e.printStackTrace()
             }
