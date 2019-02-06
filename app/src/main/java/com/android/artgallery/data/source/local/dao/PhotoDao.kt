@@ -3,9 +3,11 @@ package com.android.artgallery.data.source.local.dao
 import android.arch.persistence.room.*
 import com.android.artgallery.data.Photo
 
+/**
+ * it provides access to [Photo] underlying database
+ * */
 @Dao
 interface PhotoDao {
-
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(photo: Photo)

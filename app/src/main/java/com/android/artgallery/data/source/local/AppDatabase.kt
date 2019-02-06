@@ -5,12 +5,18 @@ import android.arch.persistence.room.RoomDatabase
 import com.android.artgallery.data.Photo
 import com.android.artgallery.data.source.local.dao.PhotoDao
 
+/**
+ * To manage data items that can be accessed, updated
+ * & maintain relationships between them
+ *
+ * @Created by ZARA
+ */
 @Database(entities = [Photo::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract val photoDao: PhotoDao
 
     companion object {
-        public val DB_NAME = "ArtGalleryDatabase.db"
+        val DB_NAME = "ArtGalleryDatabase.db"
     }
 }

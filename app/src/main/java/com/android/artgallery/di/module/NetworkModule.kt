@@ -6,7 +6,7 @@ import com.android.artgallery.data.source.AlbumRepositoryImp
 import com.android.artgallery.data.source.PhotoRepository
 import com.android.artgallery.data.source.PhotoRepositoryImp
 import com.android.artgallery.data.source.local.AppDatabase
-import com.android.artgallery.data.source.remote.RetrofitFactory.BASE_URL
+import com.android.artgallery.util.Constants.BASE_URL
 import com.android.artgallery.data.source.remote.RetrofitService
 import com.google.gson.Gson
 import dagger.Module
@@ -29,7 +29,8 @@ class NetworkModule {
         rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
         okHttpClient: OkHttpClient
     ): Retrofit {
-        return Retrofit.Builder().baseUrl(BASE_URL)
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
             .addConverterFactory(gsonConverterFactory)
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
             .client(okHttpClient)
@@ -40,7 +41,6 @@ class NetworkModule {
     @Singleton
     fun providesOkHttpClient(): OkHttpClient {
         val client = OkHttpClient.Builder()
-            //  .cache(cache)
             .connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
