@@ -3,7 +3,7 @@
     <data>
 
         <import type="android.view.View"/>
-        <variable name="albumViewModel" type="com.android.artgallery.presentation.album.AlbumViewModel"/>
+        <variable name="albumViewModel" type="com.android.artgallery.ui.album.AlbumViewModel"/>
     </data>
 
 

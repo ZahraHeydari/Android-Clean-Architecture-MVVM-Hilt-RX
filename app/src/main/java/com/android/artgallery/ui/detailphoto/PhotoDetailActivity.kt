@@ -1,10 +1,8 @@
-package com.android.artgallery.presentation.detailphoto
+package com.android.artgallery.ui.detailphoto
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
-import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.MenuItem
@@ -51,7 +49,7 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
             if (it != true) {
                 activityPhotoDetailBinding.detailFab.setImageResource(R.drawable.ic_star_empty_white_vector)
             } else {
-                activityPhotoDetailBinding.detailFab.setImageResource(R.drawable.ic_star_full_vector)
+                activityPhotoDetailBinding.detailFab.setImageResource(com.android.artgallery.R.drawable.ic_star_full_vector)
             }
         })
 
@@ -65,6 +63,7 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                supportFinishAfterTransition()
                 onBackPressed()
                 return true
             }
@@ -75,15 +74,6 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
     companion object {
         private val TAG = PhotoDetailActivity::class.java.name
         private val KEY_PHOTO_ID = "KEY_PHOTO_ID"
-
-        fun start(context: Context, id: Long) {
-            val starter = Intent(context, PhotoDetailActivity::class.java)
-            val bundle = Bundle().apply {
-                putLong(KEY_PHOTO_ID, id)
-            }
-            starter.putExtras(bundle)
-            context.startActivity(starter)
-        }
     }
 
 }

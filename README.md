@@ -9,8 +9,8 @@ At a glance:
 - Created a list of Album
 - In the Item of each Album, showed user name.
 - When user taps on Album, new page will be shown which includes list of photos.
-- when user taps on photo, show image bigger.
-- Were Written tests to completely cover Exceptions/Expectations
+- when user taps on photo, show image bigger through transition.
+- Were Written tests to completely cover Exceptions/Expectations(Not yet)
 - And: 
     - Supported orientation change
     - Supported offline mode

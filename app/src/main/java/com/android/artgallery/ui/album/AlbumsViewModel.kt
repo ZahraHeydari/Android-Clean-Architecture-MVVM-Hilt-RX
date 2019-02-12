@@ -1,4 +1,4 @@
-package com.android.artgallery.presentation.album
+package com.android.artgallery.ui.album
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
@@ -6,7 +6,11 @@ import com.android.artgallery.data.source.Album
 import com.android.artgallery.domain.usecase.GetAlbumsUseCase
 import javax.inject.Inject
 
-
+/**To store & manage UI-related data in a lifecycle conscious way!
+ * this class allows data to survive configuration changes such as screen rotation
+ * by interacting with [GetAlbumsUseCase]
+ *
+ * */
 class AlbumsViewModel @Inject constructor(private val getAlbumListUseCase: GetAlbumsUseCase) : ViewModel() {
 
     private val TAG = AlbumsViewModel::class.java.simpleName

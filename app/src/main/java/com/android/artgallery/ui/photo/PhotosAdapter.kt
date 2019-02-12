@@ -1,4 +1,4 @@
-package com.android.artgallery.presentation.photo
+package com.android.artgallery.ui.photo
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -66,13 +66,14 @@ internal class PhotosAdapter(private val listener: OnPhotosAdapterListener) :
     inner class PhotoViewHolder(dataBinding: ViewDataBinding) : RecyclerView.ViewHolder(dataBinding.root) {
 
         private val dataBinding: ViewDataBinding
+        lateinit var holderPhotoBinding:HolderPhotoBinding
 
         init {
             this.dataBinding = dataBinding
         }
 
         fun onBind(photo: Photo) {
-            val holderPhotoBinding = this.dataBinding as HolderPhotoBinding
+            holderPhotoBinding = this.dataBinding as HolderPhotoBinding
             holderPhotoBinding.photoViewModel = PhotoViewModel(photo)
             holderPhotoBinding.photoProgressBar.visibility = View.VISIBLE
             try {
@@ -95,7 +96,7 @@ internal class PhotosAdapter(private val listener: OnPhotosAdapterListener) :
             }
 
             itemView.setOnClickListener {
-                mListener.gotoDetailPage(photo.id)
+                mListener.gotoDetailPage(holderPhotoBinding.photoImageView,photo.id)
             }
 
         }

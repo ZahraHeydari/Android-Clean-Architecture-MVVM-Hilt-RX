@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
 
         <import type="android.view.View"/>
 
-        <variable name="photoViewModel" type="com.android.artgallery.presentation.photo.PhotoViewModel"/>
+        <variable name="photoViewModel" type="com.android.artgallery.ui.photo.PhotoViewModel"/>
     </data>
 
 
@@ -21,10 +21,11 @@
                 android:layout_height="wrap_content">
 
             <ImageView
+                    android:transitionName="image"
                     android:scaleType="centerCrop"
                     android:id="@+id/photo_image_view"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/photo_image_height_size"/>
+                    android:layout_height="@dimen/photo_image_height_size" tools:targetApi="lollipop"/>
 
             <TextView
                     android:text="@{photoViewModel.photo.title}"

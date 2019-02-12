@@ -1,4 +1,4 @@
-package com.android.artgallery.presentation.detailphoto
+package com.android.artgallery.ui.detailphoto
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
@@ -6,6 +6,12 @@ import com.android.artgallery.data.Photo
 import com.android.artgallery.domain.usecase.GetPhotoDetailUseCase
 import javax.inject.Inject
 
+/**
+ * A helper class for the UI controller that is responsible for
+ * preparing data for [PhotoDetailActivity]
+ *
+ * @author ZARA
+ * */
 class PhotoDetailViewModel @Inject constructor(private val getPhotoDetailUseCase: GetPhotoDetailUseCase) : ViewModel() {
 
     private val TAG = PhotoDetailViewModel::class.java.simpleName

@@ -2,9 +2,9 @@ package com.android.artgallery.di.builder
 
 import android.arch.lifecycle.ViewModel
 import com.android.artgallery.di.ViewModelKey
-import com.android.artgallery.presentation.album.AlbumsViewModel
-import com.android.artgallery.presentation.detailphoto.PhotoDetailViewModel
-import com.android.artgallery.presentation.photo.PhotosViewModel
+import com.android.artgallery.ui.album.AlbumsViewModel
+import com.android.artgallery.ui.detailphoto.PhotoDetailViewModel
+import com.android.artgallery.ui.photo.PhotosViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

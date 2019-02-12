@@ -1,4 +1,4 @@
-package com.android.artgallery.presentation.album
+package com.android.artgallery.ui.album
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -11,9 +11,8 @@ import com.android.artgallery.databinding.HolderAlbumBinding
 import java.util.ArrayList
 
 /**
- * [android.support.v7.widget.RecyclerView.Adapter] to adapt
- * [Album] items into [RecyclerView] via [AlbumViewHolder]
- *
+ * This class is responsible for converting each data entry [Album]
+ * into [AlbumViewHolder] that can then be added to the AdapterView.
  *
  * Created by ZARA on 27/01/2019.
  */

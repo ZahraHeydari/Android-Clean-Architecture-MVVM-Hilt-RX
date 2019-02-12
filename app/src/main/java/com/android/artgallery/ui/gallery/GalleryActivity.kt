@@ -1,13 +1,19 @@
-package com.android.artgallery.presentation.gallery
+package com.android.artgallery.ui.gallery
 
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.widget.ImageView
 import com.android.artgallery.R
 import com.android.artgallery.data.source.Album
-import com.android.artgallery.presentation.album.AlbumsFragment
-import com.android.artgallery.presentation.detailphoto.PhotoDetailActivity
-import com.android.artgallery.presentation.photo.PhotosFragment
+import com.android.artgallery.ui.album.AlbumsFragment
+import com.android.artgallery.ui.detailphoto.PhotoDetailActivity
+import com.android.artgallery.ui.photo.PhotosFragment
 import dagger.android.support.DaggerAppCompatActivity
+import android.support.v4.view.ViewCompat
+import android.support.v4.app.ActivityOptionsCompat
+
 
 
 class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
@@ -43,7 +49,26 @@ class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
     }
 
 
-    override fun gotoDetailPageByPhotoId(id: Long) {
-        PhotoDetailActivity.start(this, id)
+    override fun gotoDetailPageByPhotoId(imageView: ImageView, id: Long) {
+        val intent = Intent(this, PhotoDetailActivity::class.java)
+        val bundle = Bundle().apply {
+            putLong(KEY_PHOTO_ID, id)
+        }
+        intent.putExtras(bundle)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            this,
+            imageView,
+            ViewCompat.getTransitionName(imageView)!!
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivity(intent, options.toBundle())
+        }else{
+            startActivity(intent)
+        }
+    }
+
+
+    companion object {
+        private val KEY_PHOTO_ID = "KEY_PHOTO_ID"
     }
 }

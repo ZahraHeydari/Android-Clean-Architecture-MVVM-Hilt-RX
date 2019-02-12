@@ -3,7 +3,7 @@
     <data>
         <import type="android.view.View"/>
 
-        <variable name="photoDetailViewModel" type="com.android.artgallery.presentation.detailphoto.PhotoDetailViewModel"/>
+        <variable name="photoDetailViewModel" type="com.android.artgallery.ui.detailphoto.PhotoDetailViewModel"/>
 
     </data>
 
@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            tools:context=".presentation.detailphoto.PhotoDetailActivity">
+            tools:context=".ui.detailphoto.PhotoDetailActivity">
 
         <android.support.design.widget.AppBarLayout
                 android:id="@+id/detail_app_bar_layout"
@@ -39,6 +39,7 @@
 
                     <ImageView
                             android:id="@+id/detail_toolbar_image_view"
+                            android:transitionName="image"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:fitsSystemWindows="true"
