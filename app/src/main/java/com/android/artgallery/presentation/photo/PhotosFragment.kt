@@ -1,4 +1,4 @@
-package com.android.artgallery.ui.photo
+package com.android.artgallery.presentation.photo
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.android.artgallery.R
 import com.android.artgallery.databinding.FragmentPhotosBinding
-import com.android.artgallery.ui.gallery.OnGalleryCallback
+import com.android.artgallery.presentation.gallery.OnGalleryCallback
 import dagger.android.support.DaggerFragment
 import java.lang.ClassCastException
 import javax.inject.Inject

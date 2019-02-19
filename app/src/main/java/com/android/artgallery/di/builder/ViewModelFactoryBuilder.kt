@@ -1,7 +1,7 @@
 package com.android.artgallery.di.builder
 
 import android.arch.lifecycle.ViewModelProvider
-import com.android.artgallery.ui.ViewModelFactory
+import com.android.artgallery.presentation.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 

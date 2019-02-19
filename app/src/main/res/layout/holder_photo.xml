@@ -4,7 +4,7 @@
 
         <import type="android.view.View"/>
 
-        <variable name="photoViewModel" type="com.android.artgallery.ui.photo.PhotoViewModel"/>
+        <variable name="photoViewModel" type="com.android.artgallery.presentation.photo.PhotoViewModel"/>
     </data>
 
 

@@ -1,4 +1,4 @@
-package com.android.artgallery.ui.album
+package com.android.artgallery.presentation.album
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import com.android.artgallery.R
 import com.android.artgallery.data.source.Album
 import com.android.artgallery.databinding.FragmentAlbumsBinding
-import com.android.artgallery.ui.gallery.OnGalleryCallback
+import com.android.artgallery.presentation.gallery.OnGalleryCallback
 import dagger.android.support.DaggerFragment
 import java.lang.ClassCastException
 
@@ -50,11 +50,7 @@ class AlbumsFragment : DaggerFragment(), OnAlbumsAdapterListener {
         fragmentAlbumsBinding.albumsRecyclerView.adapter = adapter
 
         viewModel.isLoad.observe(this, Observer {
-            if (!it!!) {
-                fragmentAlbumsBinding.albumsProgressBar.visibility = View.VISIBLE
-            } else {
-                fragmentAlbumsBinding.albumsProgressBar.visibility = View.GONE
-            }
+            fragmentAlbumsBinding.albumsProgressBar.visibility = if(it!!) View.GONE else View.VISIBLE
         })
 
         viewModel.albumsReceivedLiveData.observe(this, Observer {

@@ -1,8 +1,8 @@
 package com.android.artgallery.di.module
 
 import com.android.artgallery.di.provider.GalleryActivityProviders
-import com.android.artgallery.ui.detailphoto.PhotoDetailActivity
-import com.android.artgallery.ui.gallery.GalleryActivity
+import com.android.artgallery.presentation.detailphoto.PhotoDetailActivity
+import com.android.artgallery.presentation.gallery.GalleryActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule

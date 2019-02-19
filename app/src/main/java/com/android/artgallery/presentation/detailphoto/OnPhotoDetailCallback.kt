@@ -1,4 +1,4 @@
-package com.android.artgallery.ui.detailphoto
+package com.android.artgallery.presentation.detailphoto
 
 /**
  * To make an interaction between [PhotoDetailActivity] & its child

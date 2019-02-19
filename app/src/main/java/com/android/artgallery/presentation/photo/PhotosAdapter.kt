@@ -1,4 +1,4 @@
-package com.android.artgallery.ui.photo
+package com.android.artgallery.presentation.photo
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding

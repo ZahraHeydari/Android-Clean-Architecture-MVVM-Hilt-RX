@@ -1,4 +1,4 @@
-package com.android.artgallery.ui.gallery
+package com.android.artgallery.presentation.gallery
 
 import android.widget.ImageView
 import com.android.artgallery.data.source.Album

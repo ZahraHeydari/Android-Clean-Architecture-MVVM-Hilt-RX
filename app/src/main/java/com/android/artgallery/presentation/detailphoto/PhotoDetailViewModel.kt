@@ -1,4 +1,4 @@
-package com.android.artgallery.ui.detailphoto
+package com.android.artgallery.presentation.detailphoto
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

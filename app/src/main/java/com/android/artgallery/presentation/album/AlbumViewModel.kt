@@ -1,4 +1,4 @@
-package com.android.artgallery.ui.album
+package com.android.artgallery.presentation.album
 
 import android.arch.lifecycle.MutableLiveData
 import com.android.artgallery.data.source.Album

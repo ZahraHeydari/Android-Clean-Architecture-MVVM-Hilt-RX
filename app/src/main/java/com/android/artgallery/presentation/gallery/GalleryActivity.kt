@@ -1,4 +1,4 @@
-package com.android.artgallery.ui.gallery
+package com.android.artgallery.presentation.gallery
 
 
 import android.content.Intent
@@ -7,9 +7,9 @@ import android.os.Bundle
 import android.widget.ImageView
 import com.android.artgallery.R
 import com.android.artgallery.data.source.Album
-import com.android.artgallery.ui.album.AlbumsFragment
-import com.android.artgallery.ui.detailphoto.PhotoDetailActivity
-import com.android.artgallery.ui.photo.PhotosFragment
+import com.android.artgallery.presentation.album.AlbumsFragment
+import com.android.artgallery.presentation.detailphoto.PhotoDetailActivity
+import com.android.artgallery.presentation.photo.PhotosFragment
 import dagger.android.support.DaggerAppCompatActivity
 import android.support.v4.view.ViewCompat
 import android.support.v4.app.ActivityOptionsCompat

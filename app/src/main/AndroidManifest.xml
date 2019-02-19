@@ -16,7 +16,7 @@
             android:theme="@style/AppTheme">
 
 
-        <activity android:name=".ui.gallery.GalleryActivity"
+        <activity android:name=".presentation.gallery.GalleryActivity"
         android:theme="@style/NoTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.detailphoto.PhotoDetailActivity"
+        <activity android:name=".presentation.detailphoto.PhotoDetailActivity"
                   android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

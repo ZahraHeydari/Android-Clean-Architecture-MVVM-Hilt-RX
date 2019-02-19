@@ -1,4 +1,4 @@
-package com.android.artgallery.ui
+package com.android.artgallery.presentation
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
