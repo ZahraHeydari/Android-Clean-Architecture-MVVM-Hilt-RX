@@ -33,6 +33,12 @@ class PhotoDaoTest {
         mDatabase.close()
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun isPhotoListEmpty(){
+        assertEquals(0,mDatabase.photoDao.loadAll().size)
+    }
+
 
     @Test
     @Throws(Exception::class)
