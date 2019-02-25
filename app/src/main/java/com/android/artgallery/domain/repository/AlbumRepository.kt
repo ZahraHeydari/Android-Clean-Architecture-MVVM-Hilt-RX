@@ -1,5 +1,6 @@
-package com.android.artgallery.data.source
+package com.android.artgallery.domain.repository
 
+import com.android.artgallery.data.source.Album
 import io.reactivex.Single
 
 /**

@@ -4,9 +4,9 @@ package com.android.artgallery.di.module
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import com.android.artgallery.data.source.AlbumRepository
+import com.android.artgallery.domain.repository.AlbumRepository
 import com.android.artgallery.data.source.AlbumRepositoryImp
-import com.android.artgallery.data.source.PhotoRepository
+import com.android.artgallery.domain.repository.PhotoRepository
 import com.android.artgallery.data.source.PhotoRepositoryImp
 import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.util.Constants.BASE_URL

@@ -1,7 +1,7 @@
 package com.android.artgallery.domain.usecase
 
 import com.android.artgallery.data.Photo
-import com.android.artgallery.data.source.PhotoRepository
+import com.android.artgallery.domain.repository.PhotoRepository
 import com.android.artgallery.domain.SingleUseCase
 import io.reactivex.Single
 import javax.inject.Inject

@@ -3,7 +3,11 @@ package com.android.artgallery.domain
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-abstract class UseCase{
+/**
+ * This class is extended by SingleUseCase classes
+ * to use common methods & fields
+ **/
+abstract class UseCase {
 
     protected var lastDisposable: Disposable? = null
     protected val compositeDisposable = CompositeDisposable()
