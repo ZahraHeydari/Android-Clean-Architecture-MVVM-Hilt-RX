@@ -10,6 +10,7 @@ import com.android.artgallery.R
 import com.android.artgallery.databinding.ActivityPhotoDetailBinding
 import com.squareup.picasso.Picasso
 import dagger.android.support.DaggerAppCompatActivity
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
@@ -49,7 +50,7 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
             if (it != true) {
                 activityPhotoDetailBinding.detailFab.setImageResource(R.drawable.ic_star_empty_white_vector)
             } else {
-                activityPhotoDetailBinding.detailFab.setImageResource(com.android.artgallery.R.drawable.ic_star_full_vector)
+                activityPhotoDetailBinding.detailFab.setImageResource(R.drawable.ic_star_full_vector)
             }
         })
 
