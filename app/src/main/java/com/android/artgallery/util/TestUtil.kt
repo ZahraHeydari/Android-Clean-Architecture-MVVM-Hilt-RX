@@ -1,6 +1,6 @@
 package com.android.artgallery.util
 
-import com.android.artgallery.data.Photo
+import com.android.artgallery.domain.model.Photo
 
 object TestUtil {
 

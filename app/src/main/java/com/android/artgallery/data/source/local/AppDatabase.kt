@@ -2,7 +2,7 @@ package com.android.artgallery.data.source.local
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import com.android.artgallery.data.Photo
+import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.data.source.local.dao.PhotoDao
 
 /**

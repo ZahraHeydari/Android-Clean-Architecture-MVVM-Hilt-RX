@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.android.artgallery.data.source.local.AppDatabase
+import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.util.TestUtil
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.After

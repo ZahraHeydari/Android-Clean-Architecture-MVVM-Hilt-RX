@@ -2,7 +2,7 @@ package com.android.artgallery.presentation.detailphoto
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.android.artgallery.data.Photo
+import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.domain.usecase.GetPhotoDetailUseCase
 import javax.inject.Inject
 

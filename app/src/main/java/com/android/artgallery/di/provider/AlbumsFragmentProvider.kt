@@ -6,12 +6,9 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class GalleryActivityProviders {
+abstract class AlbumsFragmentProvider {
 
     @ContributesAndroidInjector
     abstract fun provideAlbumsFragment(): AlbumsFragment
-
-    @ContributesAndroidInjector
-    abstract fun providePhotosFragment(): PhotosFragment
 
 }

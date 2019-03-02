@@ -2,7 +2,7 @@ package com.android.artgallery.data.source.local.dao
 
 
 import android.arch.persistence.room.*
-import com.android.artgallery.data.Photo
+import com.android.artgallery.domain.model.Photo
 
 /**
  * it provides access to [Photo] underlying database

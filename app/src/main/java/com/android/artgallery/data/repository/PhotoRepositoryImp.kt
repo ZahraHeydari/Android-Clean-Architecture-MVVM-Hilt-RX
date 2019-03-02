@@ -1,6 +1,6 @@
 package com.android.artgallery.data.source
 
-import com.android.artgallery.data.Photo
+import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.data.source.remote.RetrofitService
 import com.android.artgallery.domain.repository.PhotoRepository

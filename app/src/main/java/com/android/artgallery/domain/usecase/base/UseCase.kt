@@ -1,4 +1,4 @@
-package com.android.artgallery.domain
+package com.android.artgallery.domain.usecase.base
 
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

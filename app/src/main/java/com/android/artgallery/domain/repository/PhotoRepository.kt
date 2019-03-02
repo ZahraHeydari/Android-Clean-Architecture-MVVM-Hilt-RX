@@ -1,6 +1,6 @@
 package com.android.artgallery.domain.repository
 
-import com.android.artgallery.data.Photo
+import com.android.artgallery.domain.model.Photo
 import io.reactivex.Single
 
 

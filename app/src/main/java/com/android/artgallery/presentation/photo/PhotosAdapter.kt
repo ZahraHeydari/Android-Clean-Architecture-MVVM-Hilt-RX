@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.artgallery.R
-import com.android.artgallery.data.Photo
+import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.databinding.HolderPhotoBinding
+import com.android.artgallery.presentation.loadImage
+import com.android.artgallery.presentation.loadImageFull
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.util.ArrayList
@@ -76,24 +78,8 @@ internal class PhotosAdapter(private val listener: OnPhotosAdapterListener) :
             holderPhotoBinding = this.dataBinding as HolderPhotoBinding
             holderPhotoBinding.photoViewModel = PhotoViewModel(photo)
             holderPhotoBinding.photoProgressBar.visibility = View.VISIBLE
-            try {
-                Picasso.get()
-                    .load(photo.url)
-                    .placeholder(android.R.color.white)
-                    .into(holderPhotoBinding.photoImageView, object : Callback{
+            holderPhotoBinding.photoImageView.loadImage(photo.url,holderPhotoBinding.photoProgressBar)
 
-                        override fun onError(e: java.lang.Exception?) {
-                            e?.printStackTrace()
-
-                        }
-
-                        override fun onSuccess() {
-                            holderPhotoBinding.photoProgressBar.visibility = View.GONE
-                        }
-                    })
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
 
             itemView.setOnClickListener {
                 mListener.gotoDetailPage(holderPhotoBinding.photoImageView,photo.id)

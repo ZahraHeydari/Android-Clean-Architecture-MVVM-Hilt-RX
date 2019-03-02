@@ -1,6 +1,6 @@
 package com.android.artgallery.data.source.remote
 
-import com.android.artgallery.data.Photo
+import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.data.source.Album
 import io.reactivex.Single
 import retrofit2.http.GET

@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.android.artgallery.R
 import com.android.artgallery.databinding.ActivityPhotoDetailBinding
+import com.android.artgallery.presentation.loadImageFull
 import com.squareup.picasso.Picasso
 import dagger.android.support.DaggerAppCompatActivity
 import org.jetbrains.anko.toast
@@ -24,6 +25,7 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         activityPhotoDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_photo_detail)
         if (supportActionBar != null) {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -36,13 +38,7 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
 
         viewModel.photoData.observe(this, Observer {
             activityPhotoDetailBinding.detailTitleTextView.setText(it?.title)
-            try {
-                Picasso.get()
-                    .load(it?.url)
-                    .into(activityPhotoDetailBinding.detailToolbarImageView)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            activityPhotoDetailBinding.detailToolbarImageView.loadImageFull(it?.url)
         })
 
 
