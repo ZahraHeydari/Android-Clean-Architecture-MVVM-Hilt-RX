@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import com.android.artgallery.R
 import com.android.artgallery.data.source.Album
 import com.android.artgallery.databinding.HolderAlbumBinding
-import java.util.ArrayList
+import com.android.artgallery.presentation.album.AlbumsAdapter.AlbumViewHolder
+import java.util.*
 
 /**
  * This class is responsible for converting each data entry [Album]
@@ -27,6 +28,10 @@ internal class AlbumsAdapter(private val listener: OnAlbumsAdapterListener) :
         mListener = listener
     }
 
+    /**
+     * This method is called right when adapter is created &
+     * is used to initialize ViewHolders
+     * */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val holderAlbumBinding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(parent.context), R.layout.holder_album, parent, false
@@ -34,6 +39,9 @@ internal class AlbumsAdapter(private val listener: OnAlbumsAdapterListener) :
         return AlbumViewHolder(holderAlbumBinding)
     }
 
+    /** It is called for each ViewHolder to bind it to the adapter &
+     * This is where we pass data to ViewHolder
+     * */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as AlbumViewHolder).onBind(getItem(position))
     }
@@ -42,6 +50,9 @@ internal class AlbumsAdapter(private val listener: OnAlbumsAdapterListener) :
         return albums!![position]
     }
 
+    /**
+     * This method returns the size of collection that contains the items we want to display
+     * */
     override fun getItemCount(): Int {
         return albums?.size ?: 0
     }

@@ -4,6 +4,8 @@ package com.android.artgallery.presentation.gallery
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.view.ViewCompat
 import android.widget.ImageView
 import com.android.artgallery.R
 import com.android.artgallery.data.source.Album
@@ -11,13 +13,10 @@ import com.android.artgallery.presentation.album.AlbumsFragment
 import com.android.artgallery.presentation.detailphoto.PhotoDetailActivity
 import com.android.artgallery.presentation.photo.PhotosFragment
 import dagger.android.support.DaggerAppCompatActivity
-import android.support.v4.view.ViewCompat
-import android.support.v4.app.ActivityOptionsCompat
 
 
 
 class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +49,7 @@ class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
 
 
     override fun gotoDetailPageByPhotoId(imageView: ImageView, id: Long) {
+
         val intent = Intent(this, PhotoDetailActivity::class.java)
         val bundle = Bundle().apply {
             putLong(KEY_PHOTO_ID, id)

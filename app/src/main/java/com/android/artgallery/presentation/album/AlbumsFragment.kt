@@ -15,12 +15,11 @@ import com.android.artgallery.data.source.Album
 import com.android.artgallery.databinding.FragmentAlbumsBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
 import dagger.android.support.DaggerFragment
-import java.lang.ClassCastException
-
 import javax.inject.Inject
 
 
 class AlbumsFragment : DaggerFragment(), OnAlbumsAdapterListener {
+
 
     private lateinit var fragmentAlbumsBinding: FragmentAlbumsBinding
     private var adapter: AlbumsAdapter? = null

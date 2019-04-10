@@ -1,8 +1,8 @@
 package com.android.artgallery.data
 
 import android.arch.persistence.room.Room
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.InstrumentationRegistry
+import androidx.test.runner.AndroidJUnit4
 import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.util.TestUtil
