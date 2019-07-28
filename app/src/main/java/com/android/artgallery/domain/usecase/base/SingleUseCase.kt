@@ -23,6 +23,7 @@ abstract class SingleUseCase<T> : UseCase() {
             .observeOn(AndroidSchedulers.mainThread())
             .doAfterTerminate(onFinished)
             .subscribe(onSuccess, onError)
+
         lastDisposable?.let {
             compositeDisposable.add(it)
         }

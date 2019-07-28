@@ -38,13 +38,15 @@ class PhotoDetailViewModel @Inject constructor(private val getPhotoDetailUseCase
     }
 
     fun updateFavoriteStatus() {
-        if (photoData.value == null) return
-        if (isFavorite.value == true) {
-            isFavorite.value = false
-            getPhotoDetailUseCase.deleteAsFavorite(photoData.value!!)
-        } else {
-            isFavorite.value = true
-            getPhotoDetailUseCase.addAsFavorite(photoData.value!!)
+        photoData.value?.let { photo ->
+            if (isFavorite.value == true) {
+                getPhotoDetailUseCase.deleteAsFavorite(photo)
+            }else{
+                getPhotoDetailUseCase.addAsFavorite(photo)
+            }
+            isFavorite.value?.let {
+                isFavorite.value= !it
+            }
         }
     }
 

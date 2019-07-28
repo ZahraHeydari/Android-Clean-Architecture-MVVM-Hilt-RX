@@ -1,26 +1,19 @@
 package com.android.artgallery.presentation.album
 
 import android.arch.lifecycle.MutableLiveData
-import com.android.artgallery.data.source.Album
+import com.android.artgallery.domain.model.Album
 
 /**A helper class for the UI controller that is responsible for
  * preparing data for [AlbumViewModel] as the UI
  *
  * @CREATOR ZARA
  * */
-class AlbumViewModel {
+class AlbumViewModel(val album: Album) {
 
     private val TAG = AlbumViewModel::class.java.simpleName
-    val isLoad = MutableLiveData<Boolean>()
     val albumData = MutableLiveData<Album>()
 
-    constructor(album: Album) {
-        this.albumData.value = album
-    }
-
-    val album: Album? get() = albumData.value
-
-    fun set(album: Album) = {
+    init {
         albumData.value = album
     }
 

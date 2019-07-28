@@ -2,7 +2,7 @@ package com.android.artgallery.presentation.album
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.android.artgallery.data.source.Album
+import com.android.artgallery.domain.model.Album
 import com.android.artgallery.domain.usecase.GetAlbumsUseCase
 import javax.inject.Inject
 
@@ -24,9 +24,7 @@ class AlbumsViewModel @Inject constructor(private val getAlbumListUseCase: GetAl
 
     val album: Album? get() = albumData.value
 
-    fun set(album: Album) = {
-        albumData.value = album
-    }
+    fun set(album: Album) = run { albumData.value = album }
 
     fun loadAlbums() {
         getAlbumListUseCase.execute(

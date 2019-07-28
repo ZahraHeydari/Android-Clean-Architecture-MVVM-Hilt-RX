@@ -4,11 +4,11 @@ package com.android.artgallery.presentation.detailphoto
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import com.android.artgallery.R
+import org.hamcrest.Matchers.allOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,6 +17,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class PhotoDetailActivityTest {
 
+    val STRING_TO_BE_TYPED = "Espresso"
 
     @get:Rule
     var activityRule = ActivityTestRule(PhotoDetailActivity::class.java)
@@ -35,8 +36,8 @@ class PhotoDetailActivityTest {
 
 
     fun isTitleDisplayed(){
-        //onView(allOf(withId(R.id.detail_title_text_view), withText("reprehenderit est deserunt velit ipsam"))).check(matches(isDisplayed()))
-        onView(withId(R.id.detail_title_text_view))
+        onView(allOf(withId(R.id.detail_title_text_view), withText(STRING_TO_BE_TYPED))).check(matches(isDisplayed()))
+        //onView(withId(R.id.detail_title_text_view))
     }
 
 

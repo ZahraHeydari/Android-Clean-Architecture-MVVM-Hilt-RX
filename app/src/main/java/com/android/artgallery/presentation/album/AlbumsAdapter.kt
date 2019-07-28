@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.artgallery.R
-import com.android.artgallery.data.source.Album
 import com.android.artgallery.databinding.HolderAlbumBinding
+import com.android.artgallery.domain.model.Album
 import com.android.artgallery.presentation.album.AlbumsAdapter.AlbumViewHolder
 import java.util.*
 
@@ -17,16 +17,12 @@ import java.util.*
  *
  * Created by ZARA on 27/01/2019.
  */
-internal class AlbumsAdapter(private val listener: OnAlbumsAdapterListener) :
+internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val albums: MutableList<Album>?
-    private val mListener: OnAlbumsAdapterListener
+    private val TAG = AlbumsAdapter::class.java.name
+    private val albums: MutableList<Album> = ArrayList()
 
-    init {
-        this.albums = ArrayList()
-        mListener = listener
-    }
 
     /**
      * This method is called right when adapter is created &
@@ -47,35 +43,28 @@ internal class AlbumsAdapter(private val listener: OnAlbumsAdapterListener) :
     }
 
     private fun getItem(position: Int): Album {
-        return albums!![position]
+        return albums[position]
     }
 
     /**
      * This method returns the size of collection that contains the items we want to display
      * */
     override fun getItemCount(): Int {
-        return albums?.size ?: 0
+        return albums.size
     }
 
     fun addData(list: List<Album>) {
-        this.albums!!.clear()
+        this.albums.clear()
         this.albums.addAll(list)
         notifyDataSetChanged()
     }
 
-    /**
-     * Holder of [Album]
-     */
-    inner class AlbumViewHolder(dataBinding: ViewDataBinding) : RecyclerView.ViewHolder(dataBinding.root) {
 
-        private val dataBinding: ViewDataBinding
+    inner class AlbumViewHolder(private val dataBinding: ViewDataBinding) : RecyclerView.ViewHolder(dataBinding.root) {
 
-        init {
-            this.dataBinding = dataBinding
-        }
 
         fun onBind(album: Album) {
-            val holderAlbumBinding = this.dataBinding as HolderAlbumBinding
+            val holderAlbumBinding = dataBinding as HolderAlbumBinding
             val albumViewModel = AlbumViewModel(album)
             holderAlbumBinding.albumViewModel = albumViewModel
 
@@ -86,8 +75,4 @@ internal class AlbumsAdapter(private val listener: OnAlbumsAdapterListener) :
         }
     }
 
-    companion object {
-
-        private val TAG = AlbumsAdapter::class.java.simpleName
-    }
 }

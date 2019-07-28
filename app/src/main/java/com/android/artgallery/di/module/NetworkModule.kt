@@ -4,13 +4,13 @@ package com.android.artgallery.di.module
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import com.android.artgallery.domain.repository.AlbumRepository
-import com.android.artgallery.data.source.AlbumRepositoryImp
-import com.android.artgallery.domain.repository.PhotoRepository
-import com.android.artgallery.data.source.PhotoRepositoryImp
+import com.android.artgallery.data.repository.AlbumRepositoryImp
+import com.android.artgallery.data.repository.PhotoRepositoryImp
 import com.android.artgallery.data.source.local.AppDatabase
-import com.android.artgallery.util.Constants.BASE_URL
 import com.android.artgallery.data.source.remote.RetrofitService
+import com.android.artgallery.domain.repository.AlbumRepository
+import com.android.artgallery.domain.repository.PhotoRepository
+import com.android.artgallery.util.Constants.BASE_URL
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -98,8 +98,7 @@ class NetworkModule {
     fun provideIsNetworkAvailable(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
-        val isConnected = activeNetwork != null && activeNetwork.isConnected
-        return isConnected
+        return activeNetwork != null && activeNetwork.isConnected
     }
 
     @Singleton

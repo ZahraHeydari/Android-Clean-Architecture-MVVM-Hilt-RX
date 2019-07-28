@@ -1,6 +1,6 @@
 package com.android.artgallery.domain.usecase
 
-import com.android.artgallery.data.source.Album
+import com.android.artgallery.domain.model.Album
 import com.android.artgallery.domain.repository.AlbumRepository
 import com.android.artgallery.domain.usecase.base.SingleUseCase
 import io.reactivex.Single

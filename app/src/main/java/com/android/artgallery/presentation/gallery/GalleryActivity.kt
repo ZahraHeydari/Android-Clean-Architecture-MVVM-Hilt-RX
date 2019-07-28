@@ -8,12 +8,11 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.view.ViewCompat
 import android.widget.ImageView
 import com.android.artgallery.R
-import com.android.artgallery.data.source.Album
+import com.android.artgallery.domain.model.Album
 import com.android.artgallery.presentation.album.AlbumsFragment
 import com.android.artgallery.presentation.detailphoto.PhotoDetailActivity
 import com.android.artgallery.presentation.photo.PhotosFragment
 import dagger.android.support.DaggerAppCompatActivity
-
 
 
 class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
@@ -33,7 +32,7 @@ class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
                 R.id.gallery_container,
                 AlbumsFragment.newInstance(),
                 AlbumsFragment.FRAGMENT_NAME
-            ).commit()
+            ).commitAllowingStateLoss()
     }
 
     override fun navigateToAlbumPage(album: Album) {
@@ -44,7 +43,7 @@ class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
                 PhotosFragment.FRAGMENT_NAME
             )
             .addToBackStack(PhotosFragment.FRAGMENT_NAME)
-            .commit()
+            .commitAllowingStateLoss()
     }
 
 
@@ -58,11 +57,11 @@ class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
             this,
             imageView,
-            ViewCompat.getTransitionName(imageView)!!
+            ViewCompat.getTransitionName(imageView) ?: ""
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             startActivity(intent, options.toBundle())
-        }else{
+        } else {
             startActivity(intent)
         }
     }

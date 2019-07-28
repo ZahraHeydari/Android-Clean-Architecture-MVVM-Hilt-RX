@@ -7,16 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.artgallery.R
-import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.databinding.HolderPhotoBinding
+import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.presentation.loadImage
-import com.android.artgallery.presentation.loadImageFull
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
-import java.util.ArrayList
-
-
-
+import com.android.artgallery.presentation.photo.PhotosAdapter.PhotoViewHolder
+import java.util.*
 
 
 /**
@@ -26,16 +21,12 @@ import java.util.ArrayList
  *
  * Created by ZARA on 02/02/2019.
  */
-internal class PhotosAdapter(private val listener: OnPhotosAdapterListener) :
+internal class PhotosAdapter(val mListener: OnPhotosAdapterListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val photos: MutableList<Photo>?
-    private val mListener: OnPhotosAdapterListener
+    private val TAG = PhotosAdapter::class.java.name
+    private val photos: MutableList<Photo> = ArrayList()
 
-    init {
-        this.photos = ArrayList()
-        mListener = listener
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val holderPhotoBinding = DataBindingUtil.inflate<ViewDataBinding>(
@@ -49,47 +40,34 @@ internal class PhotosAdapter(private val listener: OnPhotosAdapterListener) :
     }
 
     private fun getItem(position: Int): Photo {
-        return photos!![position]
+        return photos[position]
     }
 
     override fun getItemCount(): Int {
-        return photos?.size ?: 0
+        return photos.size
     }
 
     fun addData(list: List<Photo>) {
-        this.photos!!.clear()
+        this.photos.clear()
         this.photos.addAll(list)
         notifyDataSetChanged()
     }
 
-    /**
-     * Holder of [Photo]
-     */
-    inner class PhotoViewHolder(dataBinding: ViewDataBinding) : RecyclerView.ViewHolder(dataBinding.root) {
 
-        private val dataBinding: ViewDataBinding
-        lateinit var holderPhotoBinding:HolderPhotoBinding
+    inner class PhotoViewHolder(private val dataBinding: ViewDataBinding) : RecyclerView.ViewHolder(dataBinding.root) {
 
-        init {
-            this.dataBinding = dataBinding
-        }
 
         fun onBind(photo: Photo) {
-            holderPhotoBinding = this.dataBinding as HolderPhotoBinding
+            val holderPhotoBinding = dataBinding as HolderPhotoBinding
             holderPhotoBinding.photoViewModel = PhotoViewModel(photo)
             holderPhotoBinding.photoProgressBar.visibility = View.VISIBLE
-            holderPhotoBinding.photoImageView.loadImage(photo.url,holderPhotoBinding.photoProgressBar)
+            holderPhotoBinding.photoImageView.loadImage(photo.url, holderPhotoBinding.photoProgressBar)
 
 
             itemView.setOnClickListener {
-                mListener.gotoDetailPage(holderPhotoBinding.photoImageView,photo.id)
+                mListener.gotoDetailPage(holderPhotoBinding.photoImageView, photo.id)
             }
 
         }
-    }
-
-    companion object {
-
-        private val TAG = PhotosAdapter::class.java.simpleName
     }
 }

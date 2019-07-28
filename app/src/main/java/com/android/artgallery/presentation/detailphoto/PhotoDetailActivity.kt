@@ -9,13 +9,12 @@ import android.view.MenuItem
 import com.android.artgallery.R
 import com.android.artgallery.databinding.ActivityPhotoDetailBinding
 import com.android.artgallery.presentation.loadImageFull
-import com.squareup.picasso.Picasso
 import dagger.android.support.DaggerAppCompatActivity
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
 
+    private val TAG = PhotoDetailActivity::class.java.name
     private lateinit var activityPhotoDetailBinding: ActivityPhotoDetailBinding
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -37,16 +36,14 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
         viewModel.checkFavoriteStatus(photoId)
 
         viewModel.photoData.observe(this, Observer {
-            activityPhotoDetailBinding.detailTitleTextView.setText(it?.title)
+            activityPhotoDetailBinding.detailTitleTextView.text = it?.title
             activityPhotoDetailBinding.detailToolbarImageView.loadImageFull(it?.url)
         })
 
 
         viewModel.isFavorite.observe(this, Observer {
-            if (it != true) {
-                activityPhotoDetailBinding.detailFab.setImageResource(R.drawable.ic_star_empty_white_vector)
-            } else {
-                activityPhotoDetailBinding.detailFab.setImageResource(R.drawable.ic_star_full_vector)
+            it?.let {
+                activityPhotoDetailBinding.detailFab.setImageResource(if (it) R.drawable.ic_star_full_vector else R.drawable.ic_star_empty_white_vector)
             }
         })
 
@@ -69,7 +66,6 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
     }
 
     companion object {
-        private val TAG = PhotoDetailActivity::class.java.name
         private val KEY_PHOTO_ID = "KEY_PHOTO_ID"
     }
 

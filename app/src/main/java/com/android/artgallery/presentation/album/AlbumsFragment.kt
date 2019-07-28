@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.artgallery.R
-import com.android.artgallery.data.source.Album
+import com.android.artgallery.domain.model.Album
 import com.android.artgallery.databinding.FragmentAlbumsBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
 import dagger.android.support.DaggerFragment
@@ -49,11 +49,15 @@ class AlbumsFragment : DaggerFragment(), OnAlbumsAdapterListener {
         fragmentAlbumsBinding.albumsRecyclerView.adapter = adapter
 
         viewModel.isLoad.observe(this, Observer {
-            fragmentAlbumsBinding.albumsProgressBar.visibility = if(it!!) View.GONE else View.VISIBLE
+            it?.let { visibility ->
+                fragmentAlbumsBinding.albumsProgressBar.visibility = if (visibility) View.GONE else View.VISIBLE
+            }
         })
 
         viewModel.albumsReceivedLiveData.observe(this, Observer {
-            initRecyclerView(it!!)
+            it?.let {
+                initRecyclerView(it)
+            }
         })
 
         return fragmentAlbumsBinding.root

@@ -6,15 +6,10 @@ import com.android.artgallery.domain.model.Photo
 
 class PhotoViewModel(val photo: Photo) :ViewModel() {
 
-    private val TAG = PhotoViewModel::class.java.simpleName
-    val isLoad = MutableLiveData<Boolean>()
+    private val TAG = PhotoViewModel::class.java.name
     val photoData = MutableLiveData<Photo>()
 
     init {
-        this.photoData.value = photo
-    }
-
-    fun set(photo: Photo) = {
         photoData.value = photo
     }
 

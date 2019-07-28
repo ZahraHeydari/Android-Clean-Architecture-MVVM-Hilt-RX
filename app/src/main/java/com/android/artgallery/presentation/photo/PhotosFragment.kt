@@ -14,7 +14,6 @@ import com.android.artgallery.R
 import com.android.artgallery.databinding.FragmentPhotosBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
 import dagger.android.support.DaggerFragment
-import java.lang.ClassCastException
 import javax.inject.Inject
 
 
@@ -49,15 +48,15 @@ class PhotosFragment : DaggerFragment(), OnPhotosAdapterListener {
         fragmentPhotosBinding.photosRecyclerView.adapter = adapter
 
         viewModel.isLoad.observe(this, Observer {
-            if (it!!) {
-                fragmentPhotosBinding.photosProgressBar.visibility = View.GONE
-            } else {
-                fragmentPhotosBinding.photosProgressBar.visibility = View.VISIBLE
+            it?.let { visibility ->
+                fragmentPhotosBinding.photosProgressBar.visibility = if (visibility) View.GONE else View.VISIBLE
             }
         })
 
         viewModel.photoListReceivedLiveData.observe(this, Observer {
-            adapter?.addData(it!!)
+            it?.let {
+                adapter?.addData(it)
+            }
         })
 
         return fragmentPhotosBinding.root
@@ -70,6 +69,7 @@ class PhotosFragment : DaggerFragment(), OnPhotosAdapterListener {
     override fun onDetach() {
         super.onDetach()
         mCallback = null
+        adapter = null
     }
 
 
