@@ -3,17 +3,18 @@ package com.android.artgallery
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.support.multidex.MultiDex
 import com.android.artgallery.di.component.DaggerApplicationComponent
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
 import kotlin.properties.Delegates
-import android.support.multidex.MultiDex
 
 
 
 class MainApplication : Application(), HasActivityInjector {
 
+    private val TAG = MainApplication::class.java.name
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
@@ -37,7 +38,6 @@ class MainApplication : Application(), HasActivityInjector {
 
     companion object {
 
-        private val TAG = MainApplication::class.java.simpleName
         var instance: MainApplication by Delegates.notNull()
     }
 

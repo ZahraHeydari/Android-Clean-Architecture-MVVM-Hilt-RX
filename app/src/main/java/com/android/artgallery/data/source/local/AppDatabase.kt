@@ -2,8 +2,8 @@ package com.android.artgallery.data.source.local
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.data.source.local.dao.PhotoDao
+import com.android.artgallery.domain.model.Photo
 
 /**
  * To manage data items that can be accessed, updated
@@ -17,6 +17,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract val photoDao: PhotoDao
 
     companion object {
-        val DB_NAME = "ArtGalleryDatabase.db"
+        const val DB_NAME = "ArtGalleryDatabase.db"
     }
 }

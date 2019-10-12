@@ -24,11 +24,8 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         activityPhotoDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_photo_detail)
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activityPhotoDetailBinding.photoDetailViewModel = viewModel
 
         val photoId = intent?.extras?.getLong(KEY_PHOTO_ID) ?: return
@@ -39,7 +36,6 @@ class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
             activityPhotoDetailBinding.detailTitleTextView.text = it?.title
             activityPhotoDetailBinding.detailToolbarImageView.loadImageFull(it?.url)
         })
-
 
         viewModel.isFavorite.observe(this, Observer {
             it?.let {
