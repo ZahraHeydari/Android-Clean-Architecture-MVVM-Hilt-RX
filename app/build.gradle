@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -42,33 +43,42 @@ android {
 }
 
 dependencies {
+    //app dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    //okhttp
     implementation 'com.squareup.okhttp3:okhttp:4.8.1'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
+    //rx-java
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+    //anko
     implementation "org.jetbrains.anko:anko:$anko_version"
+    //room
     implementation 'androidx.room:room-runtime:2.2.5'
     implementation 'androidx.room:room-rxjava2:2.2.5'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     kapt 'androidx.room:room-compiler:2.2.5'
+    //hilt
+    implementation "com.google.dagger:hilt-android:2.28-alpha"
+    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+    //dagger2
     implementation "com.google.dagger:dagger:$daggerLibVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerLibVersion"
     implementation "com.google.dagger:dagger-android:$daggerAndroidLibVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerAndroidLibVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerLibVersion"
-//    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-//    kapt 'androidx.lifecycle:lifecycle-compiler:2.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.multidex:multidex:2.0.1'
+    //test
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation 'androidx.test:runner:1.3.0'
