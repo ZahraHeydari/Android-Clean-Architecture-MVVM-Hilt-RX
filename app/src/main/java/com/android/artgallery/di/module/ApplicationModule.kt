@@ -5,21 +5,20 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.android.artgallery.di.builder.ViewModelFactoryBuilder
+import com.android.artgallery.di.component.ApplicationComponent
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
-
-@Module(includes = [ViewModelFactoryBuilder::class])
-class ApplicationModule {
-
-    @Singleton
-    @Provides
-    fun provideContext(application: Application): Context = application.applicationContext
+@InstallIn(ApplicationComponent::class)
+@Module
+class SharedPrefsModule {
 
     @Singleton
     @Provides
-    fun provideSharedPreferences(context: Context): SharedPreferences =
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(context)
 
 }
