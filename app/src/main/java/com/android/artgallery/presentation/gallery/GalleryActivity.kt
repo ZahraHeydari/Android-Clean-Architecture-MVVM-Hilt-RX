@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.android.artgallery.R
 import com.android.artgallery.domain.model.Album
 import com.android.artgallery.presentation.album.AlbumsFragment
@@ -16,7 +17,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
+class GalleryActivity : AppCompatActivity(), OnGalleryCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
