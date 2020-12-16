@@ -1,7 +1,6 @@
 package com.android.artgallery.di.builder
 
 import androidx.lifecycle.ViewModel
-import com.android.artgallery.di.ViewModelKey
 import com.android.artgallery.presentation.album.AlbumsViewModel
 import com.android.artgallery.presentation.detailphoto.PhotoDetailViewModel
 import com.android.artgallery.presentation.photo.PhotosViewModel
