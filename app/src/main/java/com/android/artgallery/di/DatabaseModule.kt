@@ -1,13 +1,13 @@
-package com.android.artgallery.di.module
+package com.android.artgallery.di
 
 import dagger.Provides
 import androidx.room.Room
 import android.app.Application
 import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.data.source.local.dao.PhotoDao
-import com.android.artgallery.di.component.ApplicationComponent
 import dagger.Module
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)

@@ -1,4 +1,4 @@
-package com.android.artgallery.di.module
+package com.android.artgallery.di
 
 
 import android.content.Context
@@ -8,7 +8,6 @@ import com.android.artgallery.data.repository.AlbumRepositoryImp
 import com.android.artgallery.data.repository.PhotoRepositoryImp
 import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.data.source.remote.RetrofitService
-import com.android.artgallery.di.component.ApplicationComponent
 import com.android.artgallery.domain.repository.AlbumRepository
 import com.android.artgallery.domain.repository.PhotoRepository
 import com.android.artgallery.util.Constants.BASE_URL
@@ -16,6 +15,7 @@ import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
-@Module(includes = [ApplicationModule::class])
+@Module
 class NetworkModule {
 
     @Provides
