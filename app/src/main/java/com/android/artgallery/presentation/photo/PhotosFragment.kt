@@ -14,9 +14,10 @@ import com.android.artgallery.R
 import com.android.artgallery.databinding.FragmentPhotosBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
 import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class PhotosFragment : DaggerFragment(), OnPhotosAdapterListener {
 
     private lateinit var fragmentPhotosBinding: FragmentPhotosBinding
