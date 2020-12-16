@@ -1,5 +1,6 @@
 package com.android.artgallery.presentation.photo
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.artgallery.domain.model.Photo
