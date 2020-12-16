@@ -8,12 +8,14 @@ import com.android.artgallery.data.repository.AlbumRepositoryImp
 import com.android.artgallery.data.repository.PhotoRepositoryImp
 import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.data.source.remote.RetrofitService
+import com.android.artgallery.di.component.ApplicationComponent
 import com.android.artgallery.domain.repository.AlbumRepository
 import com.android.artgallery.domain.repository.PhotoRepository
 import com.android.artgallery.util.Constants.BASE_URL
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -23,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module(includes = [ApplicationModule::class])
 class NetworkModule {
 
@@ -111,7 +114,7 @@ class NetworkModule {
     @Provides
     fun provideAlbumRepository(appDatabase: AppDatabase,
                                  retrofitService: RetrofitService): AlbumRepository {
-        return AlbumRepositoryImp(appDatabase,retrofitService)
+        return AlbumRepositoryImp(retrofitService)
     }
 
     @Singleton
