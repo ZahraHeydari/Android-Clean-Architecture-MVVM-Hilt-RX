@@ -77,13 +77,9 @@ dependencies {
     //hilt-view-model
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
-    //dagger2
-    implementation "com.google.dagger:dagger:$daggerLibVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerLibVersion"
-    implementation "com.google.dagger:dagger-android:$daggerAndroidLibVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerAndroidLibVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerLibVersion"
+    //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+    //multidex
     implementation 'androidx.multidex:multidex:2.0.1'
     //test
     testImplementation 'junit:junit:4.13.1'
