@@ -1,15 +1,15 @@
 package com.android.artgallery.presentation.album
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import android.content.Context
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.android.artgallery.R
 import com.android.artgallery.domain.model.Album
 import com.android.artgallery.databinding.FragmentAlbumsBinding
@@ -30,7 +30,7 @@ class AlbumsFragment : DaggerFragment(), OnAlbumsAdapterListener {
         ViewModelProviders.of(this, viewModelFactory).get(AlbumsViewModel::class.java)
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnGalleryCallback) {
             mCallback = context
@@ -48,13 +48,13 @@ class AlbumsFragment : DaggerFragment(), OnAlbumsAdapterListener {
         fragmentAlbumsBinding.albumsViewModel = viewModel
         fragmentAlbumsBinding.albumsRecyclerView.adapter = adapter
 
-        viewModel.isLoad.observe(this, Observer {
+        viewModel.isLoad.observe(viewLifecycleOwner, Observer {
             it?.let { visibility ->
                 fragmentAlbumsBinding.albumsProgressBar.visibility = if (visibility) View.GONE else View.VISIBLE
             }
         })
 
-        viewModel.albumsReceivedLiveData.observe(this, Observer {
+        viewModel.albumsReceivedLiveData.observe(viewLifecycleOwner, Observer {
             it?.let {
                 initRecyclerView(it)
             }

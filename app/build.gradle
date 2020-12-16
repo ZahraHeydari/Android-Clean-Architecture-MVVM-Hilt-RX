@@ -1,22 +1,23 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.android.artgallery"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
-        dataBinding {
-            enabled = true
-        }
+    }
+    buildFeatures {
+        viewBinding true
     }
     buildTypes {
         release {
@@ -24,52 +25,53 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    android.buildFeatures.dataBinding = true
 
-    testOptions{
-        unitTests{
+    testOptions {
+        unitTests {
             includeAndroidResources = true
         }
     }
-}
-
-androidExtensions{
-    experimental = true
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-moshi:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.12.1'
-    implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.8.1'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
     implementation "org.jetbrains.anko:anko:$anko_version"
-    implementation 'com.android.support:cardview-v7:28.0.0'
-    implementation "android.arch.persistence.room:runtime:$room_version"
-    implementation "android.arch.persistence.room:rxjava2:$room_version"
-    kapt "android.arch.persistence.room:compiler:$room_version"
+    implementation 'androidx.room:room-runtime:2.2.5'
+    implementation 'androidx.room:room-rxjava2:2.2.5'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    kapt 'androidx.room:room-compiler:2.2.5'
     implementation "com.google.dagger:dagger:$daggerLibVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerLibVersion"
     implementation "com.google.dagger:dagger-android:$daggerAndroidLibVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerAndroidLibVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerLibVersion"
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    kapt "android.arch.lifecycle:compiler:1.1.1"
+//    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+//    kapt 'androidx.lifecycle:lifecycle-compiler:2.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:multidex:1.0.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test:rules:1.1.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test:rules:1.3.0'
     implementation("io.coil-kt:coil:0.7.0")
 }

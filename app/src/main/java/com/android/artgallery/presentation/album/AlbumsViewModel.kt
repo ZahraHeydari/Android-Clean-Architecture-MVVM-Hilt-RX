@@ -1,7 +1,7 @@
 package com.android.artgallery.presentation.album
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.android.artgallery.domain.model.Album
 import com.android.artgallery.domain.usecase.GetAlbumsUseCase
 import javax.inject.Inject

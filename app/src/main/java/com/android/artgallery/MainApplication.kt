@@ -3,20 +3,21 @@ package com.android.artgallery
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.support.multidex.MultiDex
+import androidx.multidex.MultiDex
 import com.android.artgallery.di.component.DaggerApplicationComponent
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
 
 
-class MainApplication : Application(), HasActivityInjector {
+class MainApplication : Application(),HasAndroidInjector{
 
     private val TAG = MainApplication::class.java.name
     @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+    lateinit var activityInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
@@ -28,8 +29,6 @@ class MainApplication : Application(), HasActivityInjector {
             .inject(this)
     }
 
-    override fun activityInjector() = activityInjector
-
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
@@ -40,5 +39,8 @@ class MainApplication : Application(), HasActivityInjector {
 
         var instance: MainApplication by Delegates.notNull()
     }
+
+    override fun androidInjector(): AndroidInjector<Any>  =
+        activityInjector
 
 }
