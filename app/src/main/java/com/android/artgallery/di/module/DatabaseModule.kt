@@ -5,10 +5,12 @@ import androidx.room.Room
 import android.app.Application
 import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.data.source.local.dao.PhotoDao
+import com.android.artgallery.di.component.ApplicationComponent
 import dagger.Module
+import dagger.hilt.InstallIn
 import javax.inject.Singleton
 
-
+@InstallIn(ApplicationComponent::class)
 @Module
 class DatabaseModule {
 
