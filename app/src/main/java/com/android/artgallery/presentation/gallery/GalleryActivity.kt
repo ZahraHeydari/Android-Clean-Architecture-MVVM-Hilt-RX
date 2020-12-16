@@ -13,8 +13,9 @@ import com.android.artgallery.presentation.album.AlbumsFragment
 import com.android.artgallery.presentation.detailphoto.PhotoDetailActivity
 import com.android.artgallery.presentation.photo.PhotosFragment
 import dagger.android.support.DaggerAppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
