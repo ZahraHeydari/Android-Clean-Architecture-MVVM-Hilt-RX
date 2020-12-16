@@ -16,6 +16,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -46,7 +47,9 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun providesOkHttpClient(context: Context,isNetworkAvailable:Boolean): OkHttpClient {
+    fun providesOkHttpClient(
+        @ApplicationContext context: Context
+    ): OkHttpClient {
         val cacheSize = (5 * 1024 * 1024).toLong()
         val mCache = Cache(context.cacheDir, cacheSize)
         val interceptor = HttpLoggingInterceptor()
@@ -64,14 +67,18 @@ class NetworkModule {
                  * and indicate an error in fetching the response.
                  * The 'max-age' attribute is responsible for this behavior.
                  */
-                request = if (isNetworkAvailable) request.newBuilder().header("Cache-Control", "public, max-age=" + 5).build()
+                request = if (true) request.newBuilder() //make default to true till i figure out how to inject network status
+                    .header("Cache-Control", "public, max-age=" + 5).build()
                 /*If there is no Internet, get the cache that was stored 7 days ago.
                  * If the cache is older than 7 days, then discard it,
                  * and indicate an error in fetching the response.
                  * The 'max-stale' attribute is responsible for this behavior.
                  * The 'only-if-cached' attribute indicates to not retrieve new data; fetch the cache only instead.
                  */
-                else request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7).build()
+                else request.newBuilder().header(
+                    "Cache-Control",
+                    "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7
+                ).build()
                 chain.proceed(request)
             }
         return client.build()
@@ -98,8 +105,9 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideIsNetworkAvailable(context: Context): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun provideIsNetworkAvailable(@ApplicationContext context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
         return activeNetwork != null && activeNetwork.isConnected
     }
@@ -112,15 +120,18 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideAlbumRepository(appDatabase: AppDatabase,
-                                 retrofitService: RetrofitService): AlbumRepository {
+    fun provideAlbumRepository(
+        retrofitService: RetrofitService
+    ): AlbumRepository {
         return AlbumRepositoryImp(retrofitService)
     }
 
     @Singleton
     @Provides
-    fun providePhotoRepository(appDatabase: AppDatabase,
-                               retrofitService: RetrofitService): PhotoRepository {
-        return PhotoRepositoryImp(appDatabase,retrofitService)
+    fun providePhotoRepository(
+        appDatabase: AppDatabase,
+        retrofitService: RetrofitService
+    ): PhotoRepository {
+        return PhotoRepositoryImp(appDatabase, retrofitService)
     }
 }

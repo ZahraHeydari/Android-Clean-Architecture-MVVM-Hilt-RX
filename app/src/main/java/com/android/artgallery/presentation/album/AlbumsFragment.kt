@@ -1,7 +1,6 @@
 package com.android.artgallery.presentation.album
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -11,14 +10,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProviders
 import com.android.artgallery.R
 import com.android.artgallery.domain.model.Album
 import com.android.artgallery.databinding.FragmentAlbumsBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
-import dagger.android.support.DaggerFragment
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class AlbumsFragment : Fragment(),OnAlbumsAdapterListener {

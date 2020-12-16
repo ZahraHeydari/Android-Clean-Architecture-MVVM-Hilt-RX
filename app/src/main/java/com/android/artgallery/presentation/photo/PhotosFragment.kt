@@ -1,8 +1,6 @@
 package com.android.artgallery.presentation.photo
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,9 +13,7 @@ import androidx.fragment.app.viewModels
 import com.android.artgallery.R
 import com.android.artgallery.databinding.FragmentPhotosBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
-import dagger.android.support.DaggerFragment
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class PhotosFragment : Fragment(), OnPhotosAdapterListener {
@@ -25,8 +21,6 @@ class PhotosFragment : Fragment(), OnPhotosAdapterListener {
     private lateinit var fragmentPhotosBinding: FragmentPhotosBinding
     private var adapter: PhotosAdapter? = null
     private var mCallback: OnGalleryCallback? = null
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: PhotosViewModel by viewModels()
 
     override fun onAttach(context: Context) {

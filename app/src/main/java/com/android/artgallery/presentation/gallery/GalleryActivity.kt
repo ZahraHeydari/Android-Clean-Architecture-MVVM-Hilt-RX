@@ -1,6 +1,5 @@
 package com.android.artgallery.presentation.gallery
 
-
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -13,7 +12,6 @@ import com.android.artgallery.domain.model.Album
 import com.android.artgallery.presentation.album.AlbumsFragment
 import com.android.artgallery.presentation.detailphoto.PhotoDetailActivity
 import com.android.artgallery.presentation.photo.PhotosFragment
-import dagger.android.support.DaggerAppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
