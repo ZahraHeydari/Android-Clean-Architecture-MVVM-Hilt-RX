@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.android.artgallery.R
 import com.android.artgallery.databinding.FragmentPhotosBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
@@ -18,16 +20,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PhotosFragment : DaggerFragment(), OnPhotosAdapterListener {
+class PhotosFragment : Fragment(), OnPhotosAdapterListener {
 
     private lateinit var fragmentPhotosBinding: FragmentPhotosBinding
     private var adapter: PhotosAdapter? = null
     private var mCallback: OnGalleryCallback? = null
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: PhotosViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(PhotosViewModel::class.java)
-    }
+    private val viewModel: PhotosViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
