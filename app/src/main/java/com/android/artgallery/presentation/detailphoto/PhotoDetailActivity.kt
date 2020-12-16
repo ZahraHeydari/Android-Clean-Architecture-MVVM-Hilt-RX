@@ -10,8 +10,10 @@ import com.android.artgallery.R
 import com.android.artgallery.databinding.ActivityPhotoDetailBinding
 import com.android.artgallery.presentation.loadImageFull
 import dagger.android.support.DaggerAppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
 
     private val TAG = PhotoDetailActivity::class.java.name
