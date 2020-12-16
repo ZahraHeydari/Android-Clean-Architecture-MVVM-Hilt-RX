@@ -1,21 +1,21 @@
 package com.android.artgallery.presentation.gallery
 
-
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.android.artgallery.R
 import com.android.artgallery.domain.model.Album
 import com.android.artgallery.presentation.album.AlbumsFragment
 import com.android.artgallery.presentation.detailphoto.PhotoDetailActivity
 import com.android.artgallery.presentation.photo.PhotosFragment
-import dagger.android.support.DaggerAppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class GalleryActivity : DaggerAppCompatActivity(), OnGalleryCallback {
+@AndroidEntryPoint
+class GalleryActivity : AppCompatActivity(), OnGalleryCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

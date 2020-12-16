@@ -4,29 +4,15 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
-import com.android.artgallery.di.component.DaggerApplicationComponent
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
-import javax.inject.Inject
-import kotlin.properties.Delegates
+import dagger.hilt.android.HiltAndroidApp
 
 
-
-class MainApplication : Application(),HasAndroidInjector{
-
-    private val TAG = MainApplication::class.java.name
-    @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Any>
+@HiltAndroidApp
+class MainApplication : Application(){
 
     override fun onCreate() {
         super.onCreate()
         MultiDex.install(this)
-        DaggerApplicationComponent
-            .builder()
-            .application(this)
-            .build()
-            .inject(this)
     }
 
 
@@ -34,13 +20,5 @@ class MainApplication : Application(),HasAndroidInjector{
         super.attachBaseContext(base)
         MultiDex.install(this)
     }
-
-    companion object {
-
-        var instance: MainApplication by Delegates.notNull()
-    }
-
-    override fun androidInjector(): AndroidInjector<Any>  =
-        activityInjector
 
 }
