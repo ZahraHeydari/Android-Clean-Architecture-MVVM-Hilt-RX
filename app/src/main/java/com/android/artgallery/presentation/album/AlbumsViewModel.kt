@@ -1,5 +1,6 @@
 package com.android.artgallery.presentation.album
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.artgallery.domain.model.Album
@@ -11,7 +12,7 @@ import javax.inject.Inject
  * by interacting with [GetAlbumsUseCase]
  *
  * */
-class AlbumsViewModel @Inject constructor(private val getAlbumListUseCase: GetAlbumsUseCase) : ViewModel() {
+class AlbumsViewModel @ViewModelInject constructor(private val getAlbumListUseCase: GetAlbumsUseCase) : ViewModel() {
 
     private val TAG = AlbumsViewModel::class.java.simpleName
     val albumsReceivedLiveData = MutableLiveData<List<Album>>()

@@ -1,5 +1,6 @@
 package com.android.artgallery.presentation.detailphoto
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.artgallery.domain.model.Photo
@@ -12,7 +13,7 @@ import javax.inject.Inject
  *
  * @author ZARA
  * */
-class PhotoDetailViewModel @Inject constructor(private val getPhotoDetailUseCase: GetPhotoDetailUseCase) : ViewModel() {
+class PhotoDetailViewModel @ViewModelInject constructor(private val getPhotoDetailUseCase: GetPhotoDetailUseCase) : ViewModel() {
 
     private val TAG = PhotoDetailViewModel::class.java.simpleName
     val photoData = MutableLiveData<Photo>()

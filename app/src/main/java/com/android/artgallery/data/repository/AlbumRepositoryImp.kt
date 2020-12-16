@@ -11,8 +11,9 @@ import io.reactivex.Single
  * This repository is responsible for
  * fetching data[Album] from server or db
  * */
-class AlbumRepositoryImp(private val database: AppDatabase,
-                         private val retrofitService: RetrofitService) :
+class AlbumRepositoryImp(
+    private val retrofitService: RetrofitService
+) :
     AlbumRepository {
 
 

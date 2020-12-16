@@ -5,22 +5,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.android.artgallery.R
 import com.android.artgallery.databinding.ActivityPhotoDetailBinding
 import com.android.artgallery.presentation.loadImageFull
-import dagger.android.support.DaggerAppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class PhotoDetailActivity : DaggerAppCompatActivity(), OnPhotoDetailCallback {
+@AndroidEntryPoint
+class PhotoDetailActivity : AppCompatActivity(), OnPhotoDetailCallback {
 
     private val TAG = PhotoDetailActivity::class.java.name
     private lateinit var activityPhotoDetailBinding: ActivityPhotoDetailBinding
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: PhotoDetailViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(PhotoDetailViewModel::class.java)
-    }
+    private val viewModel: PhotoDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

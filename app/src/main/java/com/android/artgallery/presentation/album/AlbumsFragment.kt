@@ -1,7 +1,6 @@
 package com.android.artgallery.presentation.album
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -9,26 +8,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.android.artgallery.R
 import com.android.artgallery.domain.model.Album
 import com.android.artgallery.databinding.FragmentAlbumsBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class AlbumsFragment : DaggerFragment(), OnAlbumsAdapterListener {
+@AndroidEntryPoint
+class AlbumsFragment : Fragment(),OnAlbumsAdapterListener {
 
 
     private lateinit var fragmentAlbumsBinding: FragmentAlbumsBinding
     private var adapter: AlbumsAdapter? = null
     private var mCallback: OnGalleryCallback? = null
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: AlbumsViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(AlbumsViewModel::class.java)
-    }
+
+    private val viewModel: AlbumsViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
