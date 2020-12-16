@@ -1,7 +1,7 @@
 package com.android.artgallery.di.module
 
 import dagger.Provides
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.app.Application
 import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.data.source.local.dao.PhotoDao

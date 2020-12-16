@@ -1,6 +1,6 @@
 package com.android.artgallery.data
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
 import com.android.artgallery.data.source.local.AppDatabase

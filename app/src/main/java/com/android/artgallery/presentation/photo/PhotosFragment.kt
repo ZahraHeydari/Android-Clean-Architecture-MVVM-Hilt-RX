@@ -1,15 +1,15 @@
 package com.android.artgallery.presentation.photo
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import android.content.Context
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
 import com.android.artgallery.R
 import com.android.artgallery.databinding.FragmentPhotosBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
@@ -28,7 +28,7 @@ class PhotosFragment : DaggerFragment(), OnPhotosAdapterListener {
         ViewModelProviders.of(this, viewModelFactory).get(PhotosViewModel::class.java)
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnGalleryCallback) {
             mCallback = context
@@ -47,13 +47,13 @@ class PhotosFragment : DaggerFragment(), OnPhotosAdapterListener {
         fragmentPhotosBinding.photosViewModel = viewModel
         fragmentPhotosBinding.photosRecyclerView.adapter = adapter
 
-        viewModel.isLoad.observe(this, Observer {
+        viewModel.isLoad.observe(viewLifecycleOwner, Observer {
             it?.let { visibility ->
                 fragmentPhotosBinding.photosProgressBar.visibility = if (visibility) View.GONE else View.VISIBLE
             }
         })
 
-        viewModel.photoListReceivedLiveData.observe(this, Observer {
+        viewModel.photoListReceivedLiveData.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter?.addData(it)
             }

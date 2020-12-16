@@ -1,11 +1,11 @@
 package com.android.artgallery.presentation.detailphoto
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.databinding.DataBindingUtil
 import com.android.artgallery.R
 import com.android.artgallery.databinding.ActivityPhotoDetailBinding
 import com.android.artgallery.presentation.loadImageFull

@@ -7,7 +7,7 @@
 
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
@@ -16,14 +16,14 @@
             android:fitsSystemWindows="true"
             tools:context=".presentation.detailphoto.PhotoDetailActivity">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/detail_app_bar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/detail_image_height_size"
                 android:fitsSystemWindows="true"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <android.support.design.widget.CollapsingToolbarLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:id="@+id/detail_collapsing_toolbar_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -48,18 +48,18 @@
 
                 </RelativeLayout>
 
-                <android.support.v7.widget.Toolbar
+                <androidx.appcompat.widget.Toolbar
                         android:id="@+id/detail_toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         app:layout_collapseMode="pin"
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-            </android.support.design.widget.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:id="@+id/detail_nested_scroll_view"
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
 
 
                 <!--Description-->
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -94,13 +94,13 @@
                             android:textColor="@color/colorTextSecondary"
                             android:textSize="@dimen/subheading1"/>
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/detail_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,6 +109,6 @@
                 app:layout_anchor="@id/detail_app_bar_layout"
                 app:layout_anchorGravity="bottom|end"/>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

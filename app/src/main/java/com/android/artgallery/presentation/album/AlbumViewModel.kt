@@ -1,6 +1,6 @@
 package com.android.artgallery.presentation.album
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.android.artgallery.domain.model.Album
 
 /**A helper class for the UI controller that is responsible for
