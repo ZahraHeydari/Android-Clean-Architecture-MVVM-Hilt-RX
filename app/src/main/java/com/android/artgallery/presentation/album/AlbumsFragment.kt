@@ -15,9 +15,10 @@ import com.android.artgallery.domain.model.Album
 import com.android.artgallery.databinding.FragmentAlbumsBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
 import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class AlbumsFragment : DaggerFragment(), OnAlbumsAdapterListener {
 
 
