@@ -16,5 +16,4 @@ class AlbumViewModel(val album: Album) {
     init {
         albumData.value = album
     }
-
 }

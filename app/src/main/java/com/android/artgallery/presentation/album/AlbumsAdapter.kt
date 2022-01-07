@@ -20,11 +20,9 @@ import java.util.*
 internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val TAG = AlbumsAdapter::class.java.name
     private val albums: MutableList<Album> = ArrayList()
 
-
-    /**
+    /*
      * This method is called right when adapter is created &
      * is used to initialize ViewHolders
      * */
@@ -35,7 +33,7 @@ internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
         return AlbumViewHolder(holderAlbumBinding)
     }
 
-    /** It is called for each ViewHolder to bind it to the adapter &
+    /* It is called for each ViewHolder to bind it to the adapter &
      * This is where we pass data to ViewHolder
      * */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -46,7 +44,7 @@ internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
         return albums[position]
     }
 
-    /**
+    /*
      * This method returns the size of collection that contains the items we want to display
      * */
     override fun getItemCount(): Int {
@@ -59,9 +57,9 @@ internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
         notifyDataSetChanged()
     }
 
-
-    inner class AlbumViewHolder(private val dataBinding: ViewDataBinding) : RecyclerView.ViewHolder(dataBinding.root) {
-
+    inner class AlbumViewHolder(
+        private val dataBinding: ViewDataBinding
+    ) : RecyclerView.ViewHolder(dataBinding.root) {
 
         fun onBind(album: Album) {
             val holderAlbumBinding = dataBinding as HolderAlbumBinding
@@ -71,8 +69,6 @@ internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
             itemView.setOnClickListener {
                 mListener.showPhotos(album)
             }
-
         }
     }
-
 }

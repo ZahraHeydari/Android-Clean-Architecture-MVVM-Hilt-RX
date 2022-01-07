@@ -3,7 +3,6 @@ package com.android.artgallery.presentation.album
 import androidx.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AlbumsFragment : Fragment(),OnAlbumsAdapterListener {
-
 
     private lateinit var fragmentAlbumsBinding: FragmentAlbumsBinding
     private var adapter: AlbumsAdapter? = null
@@ -64,7 +62,6 @@ class AlbumsFragment : Fragment(),OnAlbumsAdapterListener {
     }
 
     private fun initRecyclerView(albums: List<Album>) {
-        Log.i("AlbumsFragment", albums.toString())
         adapter?.addData(albums)
     }
 
@@ -73,7 +70,6 @@ class AlbumsFragment : Fragment(),OnAlbumsAdapterListener {
         adapter = null
         mCallback = null
     }
-
 
     companion object {
 

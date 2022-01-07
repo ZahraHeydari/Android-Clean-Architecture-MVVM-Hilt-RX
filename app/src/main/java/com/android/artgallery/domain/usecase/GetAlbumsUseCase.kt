@@ -12,8 +12,9 @@ import javax.inject.Inject
  * it handles the response that returns data &
  * contains a list of actions, event steps
  */
-class GetAlbumsUseCase @Inject constructor(private val repository: AlbumRepository) : SingleUseCase<List<Album>>() {
-
+class GetAlbumsUseCase @Inject constructor(
+    private val repository: AlbumRepository
+) : SingleUseCase<List<Album>>() {
 
     override fun buildUseCaseSingle(): Single<List<Album>> {
         return repository.getAlbums()

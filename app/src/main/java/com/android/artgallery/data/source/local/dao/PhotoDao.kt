@@ -1,8 +1,7 @@
 package com.android.artgallery.data.source.local.dao
 
-
 import androidx.room.*
-import com.android.artgallery.domain.model.Photo
+import com.android.artgallery.data.source.local.entity.PhotoEntity
 
 /**
  * it provides access to [Photo] underlying database
@@ -11,24 +10,23 @@ import com.android.artgallery.domain.model.Photo
 interface PhotoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(photo: Photo): Long
+    fun insert(photo: PhotoEntity): Long
 
     @Query("SELECT * FROM Photo")
-    fun loadAll(): MutableList<Photo>
+    fun loadAll(): MutableList<PhotoEntity>
 
     @Delete
-    fun delete(photo: Photo)
+    fun delete(photo: PhotoEntity)
 
     @Query("DELETE FROM Photo")
     fun deleteAll()
 
     @Query("SELECT * FROM Photo where id = :photoId")
-    fun loadOneByPhotoId(photoId: Long): Photo?
+    fun loadOneByPhotoId(photoId: Long): PhotoEntity?
 
     @Query("SELECT * FROM Photo where title = :photoTitle")
-    fun loadOneByPhotoTitle(photoTitle: String): Photo?
+    fun loadOneByPhotoTitle(photoTitle: String): PhotoEntity?
 
     @Update
-    fun update(photo: Photo)
-
+    fun update(photo: PhotoEntity)
 }

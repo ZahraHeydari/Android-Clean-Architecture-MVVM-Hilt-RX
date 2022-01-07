@@ -11,7 +11,9 @@ import javax.inject.Inject
  * it handles the response that returns data &
  * contains a list of actions, event steps
  */
-class GetPhotoDetailUseCase @Inject constructor(private val repository: PhotoRepository) : SingleUseCase<Photo>() {
+class GetPhotoDetailUseCase @Inject constructor(
+    private val repository: PhotoRepository
+) : SingleUseCase<Photo>() {
 
     private var photoId: Long? = null
 

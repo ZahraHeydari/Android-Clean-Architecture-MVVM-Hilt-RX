@@ -37,14 +37,20 @@ class PhotosFragment : Fragment(), OnPhotosAdapterListener {
         viewModel.loadPhotos(albumId)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        fragmentPhotosBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_photos, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View{
+        fragmentPhotosBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_photos, container, false)
         fragmentPhotosBinding.photosViewModel = viewModel
         fragmentPhotosBinding.photosRecyclerView.adapter = adapter
 
         viewModel.isLoad.observe(viewLifecycleOwner, Observer {
             it?.let { visibility ->
-                fragmentPhotosBinding.photosProgressBar.visibility = if (visibility) View.GONE else View.VISIBLE
+                fragmentPhotosBinding.photosProgressBar.visibility =
+                    if (visibility) View.GONE else View.VISIBLE
             }
         })
 
@@ -67,20 +73,16 @@ class PhotosFragment : Fragment(), OnPhotosAdapterListener {
         adapter = null
     }
 
-
     companion object {
 
         val KEY_ALBUM_ID = "KEY_ALBUM_ID"
         val FRAGMENT_NAME = PhotosFragment::class.java.name
 
-
         @JvmStatic
-        fun newInstance(id: Long) =
-            PhotosFragment().apply {
-                arguments = Bundle().apply {
-                    putLong(KEY_ALBUM_ID, id)
-                }
+        fun newInstance(id: Long) = PhotosFragment().apply {
+            arguments = Bundle().apply {
+                putLong(KEY_ALBUM_ID, id)
             }
+        }
     }
-
 }

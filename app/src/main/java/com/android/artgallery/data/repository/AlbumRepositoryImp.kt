@@ -6,20 +6,15 @@ import com.android.artgallery.data.source.remote.RetrofitService
 import com.android.artgallery.domain.repository.AlbumRepository
 import io.reactivex.Single
 
-
 /**
  * This repository is responsible for
  * fetching data[Album] from server or db
  * */
 class AlbumRepositoryImp(
     private val retrofitService: RetrofitService
-) :
-    AlbumRepository {
-
+) : AlbumRepository {
 
     override fun getAlbums(): Single<List<Album>> {
         return retrofitService.getAlbums()
     }
-
-
 }

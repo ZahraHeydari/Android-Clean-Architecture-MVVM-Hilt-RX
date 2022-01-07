@@ -13,7 +13,6 @@ import com.android.artgallery.presentation.loadImage
 import com.android.artgallery.presentation.photo.PhotosAdapter.PhotoViewHolder
 import java.util.*
 
-
 /**
  * [android.support.v7.widget.RecyclerView.Adapter] to adapt
  * [Photo] items into [RecyclerView] via [PhotoViewHolder]
@@ -24,9 +23,7 @@ import java.util.*
 internal class PhotosAdapter(val mListener: OnPhotosAdapterListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val TAG = PhotosAdapter::class.java.name
     private val photos: MutableList<Photo> = ArrayList()
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val holderPhotoBinding = DataBindingUtil.inflate<ViewDataBinding>(
@@ -53,21 +50,19 @@ internal class PhotosAdapter(val mListener: OnPhotosAdapterListener) :
         notifyDataSetChanged()
     }
 
-
     inner class PhotoViewHolder(private val dataBinding: ViewDataBinding) : RecyclerView.ViewHolder(dataBinding.root) {
-
 
         fun onBind(photo: Photo) {
             val holderPhotoBinding = dataBinding as HolderPhotoBinding
-            holderPhotoBinding.photoViewModel = PhotoViewModel(photo)
-            holderPhotoBinding.photoProgressBar.visibility = View.VISIBLE
-            holderPhotoBinding.photoImageView.loadImage(photo.url, holderPhotoBinding.photoProgressBar)
-
+            with(holderPhotoBinding){
+                photoViewModel = PhotoViewModel(photo)
+                photoProgressBar.visibility = View.VISIBLE
+                photoImageView.loadImage(photo.url, holderPhotoBinding.photoProgressBar)
+            }
 
             itemView.setOnClickListener {
                 mListener.gotoDetailPage(holderPhotoBinding.photoImageView, photo.id)
             }
-
         }
     }
 }

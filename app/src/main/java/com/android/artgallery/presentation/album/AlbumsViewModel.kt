@@ -1,10 +1,10 @@
 package com.android.artgallery.presentation.album
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.artgallery.domain.model.Album
 import com.android.artgallery.domain.usecase.GetAlbumsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 /**To store & manage UI-related data in a lifecycle conscious way!
@@ -12,9 +12,10 @@ import javax.inject.Inject
  * by interacting with [GetAlbumsUseCase]
  *
  * */
-class AlbumsViewModel @ViewModelInject constructor(private val getAlbumListUseCase: GetAlbumsUseCase) : ViewModel() {
+@HiltViewModel
+class AlbumsViewModel @Inject constructor(private val getAlbumListUseCase: GetAlbumsUseCase) :
+    ViewModel() {
 
-    private val TAG = AlbumsViewModel::class.java.simpleName
     val albumsReceivedLiveData = MutableLiveData<List<Album>>()
     val isLoad = MutableLiveData<Boolean>()
     val albumData = MutableLiveData<Album>()

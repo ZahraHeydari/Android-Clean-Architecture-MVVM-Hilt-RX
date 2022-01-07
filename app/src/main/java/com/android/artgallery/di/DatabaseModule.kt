@@ -7,10 +7,10 @@ import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.data.source.local.dao.PhotoDao
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 @Module
 class DatabaseModule {
 
@@ -23,7 +23,6 @@ class DatabaseModule {
             AppDatabase.DB_NAME
         ).allowMainThreadQueries().build()
     }
-
 
     @Provides
     internal fun providePhotoDao(appDatabase: AppDatabase): PhotoDao {

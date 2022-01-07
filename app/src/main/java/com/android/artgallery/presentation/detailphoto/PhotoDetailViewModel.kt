@@ -1,10 +1,10 @@
 package com.android.artgallery.presentation.detailphoto
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.domain.usecase.GetPhotoDetailUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 /**
@@ -13,9 +13,11 @@ import javax.inject.Inject
  *
  * @author ZARA
  * */
-class PhotoDetailViewModel @ViewModelInject constructor(private val getPhotoDetailUseCase: GetPhotoDetailUseCase) : ViewModel() {
+@HiltViewModel
+class PhotoDetailViewModel @Inject constructor(
+    private val getPhotoDetailUseCase: GetPhotoDetailUseCase
+) : ViewModel() {
 
-    private val TAG = PhotoDetailViewModel::class.java.simpleName
     val photoData = MutableLiveData<Photo>()
     val isLoad = MutableLiveData<Boolean>()
     val isFavorite = MutableLiveData<Boolean>()
@@ -42,11 +44,11 @@ class PhotoDetailViewModel @ViewModelInject constructor(private val getPhotoDeta
         photoData.value?.let { photo ->
             if (isFavorite.value == true) {
                 getPhotoDetailUseCase.deleteAsFavorite(photo)
-            }else{
+            } else {
                 getPhotoDetailUseCase.addAsFavorite(photo)
             }
             isFavorite.value?.let {
-                isFavorite.value= !it
+                isFavorite.value = !it
             }
         }
     }

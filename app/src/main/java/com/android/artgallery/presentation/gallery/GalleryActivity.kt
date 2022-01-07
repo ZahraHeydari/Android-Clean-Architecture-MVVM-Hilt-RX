@@ -46,9 +46,7 @@ class GalleryActivity : AppCompatActivity(), OnGalleryCallback {
             .commitAllowingStateLoss()
     }
 
-
     override fun gotoDetailPageByPhotoId(imageView: ImageView, id: Long) {
-
         val intent = Intent(this, PhotoDetailActivity::class.java)
         val bundle = Bundle().apply {
             putLong(KEY_PHOTO_ID, id)
@@ -59,13 +57,8 @@ class GalleryActivity : AppCompatActivity(), OnGalleryCallback {
             imageView,
             ViewCompat.getTransitionName(imageView) ?: ""
         )
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            startActivity(intent, options.toBundle())
-        } else {
-            startActivity(intent)
-        }
+        startActivity(intent, options.toBundle())
     }
-
 
     companion object {
         private val KEY_PHOTO_ID = "KEY_PHOTO_ID"
