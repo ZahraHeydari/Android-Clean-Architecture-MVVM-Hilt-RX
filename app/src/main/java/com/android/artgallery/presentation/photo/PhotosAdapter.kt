@@ -11,7 +11,6 @@ import com.android.artgallery.databinding.HolderPhotoBinding
 import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.presentation.loadImage
 import com.android.artgallery.presentation.photo.PhotosAdapter.PhotoViewHolder
-import java.util.*
 
 /**
  * [android.support.v7.widget.RecyclerView.Adapter] to adapt
@@ -54,7 +53,7 @@ internal class PhotosAdapter(val mListener: OnPhotosAdapterListener) :
 
         fun onBind(photo: Photo) {
             val holderPhotoBinding = dataBinding as HolderPhotoBinding
-            with(holderPhotoBinding){
+            with(holderPhotoBinding) {
                 photoViewModel = PhotoViewModel(photo)
                 photoProgressBar.visibility = View.VISIBLE
                 photoImageView.loadImage(photo.url, holderPhotoBinding.photoProgressBar)

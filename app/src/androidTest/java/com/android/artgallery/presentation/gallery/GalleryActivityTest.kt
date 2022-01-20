@@ -14,7 +14,6 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class GalleryActivityTest {
 
-
     @get:Rule
     var activityRule = ActivityTestRule(GalleryActivity::class.java)
 
@@ -22,5 +21,4 @@ class GalleryActivityTest {
     fun container_IsDisplayed() {
         onView(withId(R.id.gallery_container)).check(matches(isDisplayed()))
     }
-
 }

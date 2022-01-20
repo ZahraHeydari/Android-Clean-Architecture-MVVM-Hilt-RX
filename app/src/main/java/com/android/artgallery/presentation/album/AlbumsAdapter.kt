@@ -9,7 +9,6 @@ import com.android.artgallery.R
 import com.android.artgallery.databinding.HolderAlbumBinding
 import com.android.artgallery.domain.model.Album
 import com.android.artgallery.presentation.album.AlbumsAdapter.AlbumViewHolder
-import java.util.*
 
 /**
  * This class is responsible for converting each data entry [Album]

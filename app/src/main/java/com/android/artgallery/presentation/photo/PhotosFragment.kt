@@ -1,6 +1,5 @@
 package com.android.artgallery.presentation.photo
 
-import androidx.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +9,7 @@ import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.android.artgallery.R
 import com.android.artgallery.databinding.FragmentPhotosBinding
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
@@ -41,24 +41,30 @@ class PhotosFragment : Fragment(), OnPhotosAdapterListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
+    ): View {
         fragmentPhotosBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_photos, container, false)
         fragmentPhotosBinding.photosViewModel = viewModel
         fragmentPhotosBinding.photosRecyclerView.adapter = adapter
 
-        viewModel.isLoad.observe(viewLifecycleOwner, Observer {
-            it?.let { visibility ->
-                fragmentPhotosBinding.photosProgressBar.visibility =
-                    if (visibility) View.GONE else View.VISIBLE
+        viewModel.isLoad.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let { visibility ->
+                    fragmentPhotosBinding.photosProgressBar.visibility =
+                        if (visibility) View.GONE else View.VISIBLE
+                }
             }
-        })
+        )
 
-        viewModel.photoListReceivedLiveData.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter?.addData(it)
+        viewModel.photoListReceivedLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let {
+                    adapter?.addData(it)
+                }
             }
-        })
+        )
 
         return fragmentPhotosBinding.root
     }

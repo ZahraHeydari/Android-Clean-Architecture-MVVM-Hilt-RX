@@ -3,7 +3,6 @@ package com.android.artgallery.domain.repository
 import com.android.artgallery.domain.model.Photo
 import io.reactivex.Single
 
-
 /**
  * To make an interaction between [PhotoRepositoryImp] & [GetPhotosUseCase]
  * */

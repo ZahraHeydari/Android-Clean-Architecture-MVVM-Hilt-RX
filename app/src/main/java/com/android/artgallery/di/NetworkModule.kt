@@ -1,6 +1,5 @@
 package com.android.artgallery.di
 
-
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
@@ -67,7 +66,7 @@ class NetworkModule {
                  * and indicate an error in fetching the response.
                  * The 'max-age' attribute is responsible for this behavior.
                  */
-                request = if (true) request.newBuilder() //make default to true till i figure out how to inject network status
+                request = if (true) request.newBuilder() // make default to true till i figure out how to inject network status
                     .header("Cache-Control", "public, max-age=" + 5).build()
                 /*If there is no Internet, get the cache that was stored 7 days ago.
                  * If the cache is older than 7 days, then discard it,
