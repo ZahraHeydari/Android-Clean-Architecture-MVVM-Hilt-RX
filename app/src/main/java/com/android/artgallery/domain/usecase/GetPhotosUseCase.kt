@@ -6,7 +6,6 @@ import com.android.artgallery.domain.usecase.base.SingleUseCase
 import io.reactivex.Single
 import javax.inject.Inject
 
-
 /**
  * An interactor that calls the actual implementation of [PhotosViewModel](which is injected by DI)
  * it handles the response that returns data &

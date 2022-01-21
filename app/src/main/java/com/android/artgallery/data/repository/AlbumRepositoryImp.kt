@@ -1,8 +1,7 @@
 package com.android.artgallery.data.repository
 
-import com.android.artgallery.domain.model.Album
-import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.data.source.remote.RetrofitService
+import com.android.artgallery.domain.model.Album
 import com.android.artgallery.domain.repository.AlbumRepository
 import io.reactivex.Single
 

@@ -6,7 +6,6 @@ import com.android.artgallery.data.source.remote.RetrofitService
 import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.domain.repository.PhotoRepository
 import io.reactivex.Single
-import java.util.*
 
 /**
  * This repository is responsible for

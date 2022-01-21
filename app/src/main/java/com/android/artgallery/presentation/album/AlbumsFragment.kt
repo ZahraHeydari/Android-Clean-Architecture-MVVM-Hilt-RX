@@ -1,6 +1,5 @@
 package com.android.artgallery.presentation.album
 
-import androidx.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,14 +8,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.android.artgallery.R
-import com.android.artgallery.domain.model.Album
 import com.android.artgallery.databinding.FragmentAlbumsBinding
+import com.android.artgallery.domain.model.Album
 import com.android.artgallery.presentation.gallery.OnGalleryCallback
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AlbumsFragment : Fragment(),OnAlbumsAdapterListener {
+class AlbumsFragment : Fragment(), OnAlbumsAdapterListener {
 
     private lateinit var fragmentAlbumsBinding: FragmentAlbumsBinding
     private var adapter: AlbumsAdapter? = null
@@ -42,17 +42,23 @@ class AlbumsFragment : Fragment(),OnAlbumsAdapterListener {
         fragmentAlbumsBinding.albumsViewModel = viewModel
         fragmentAlbumsBinding.albumsRecyclerView.adapter = adapter
 
-        viewModel.isLoad.observe(viewLifecycleOwner, Observer {
-            it?.let { visibility ->
-                fragmentAlbumsBinding.albumsProgressBar.visibility = if (visibility) View.GONE else View.VISIBLE
+        viewModel.isLoad.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let { visibility ->
+                    fragmentAlbumsBinding.albumsProgressBar.visibility = if (visibility) View.GONE else View.VISIBLE
+                }
             }
-        })
+        )
 
-        viewModel.albumsReceivedLiveData.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                initRecyclerView(it)
+        viewModel.albumsReceivedLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                it?.let {
+                    initRecyclerView(it)
+                }
             }
-        })
+        )
 
         return fragmentAlbumsBinding.root
     }

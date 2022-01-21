@@ -6,16 +6,16 @@ import androidx.test.runner.AndroidJUnit4
 import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.domain.model.Photo
 import com.android.artgallery.util.TestUtil
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-
-
 import org.junit.runner.RunWith
 import java.io.IOException
-
 
 @RunWith(AndroidJUnit4::class)
 class PhotoDaoTest {
@@ -36,10 +36,9 @@ class PhotoDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun isPhotoListEmpty(){
-        assertEquals(0,mDatabase.photoDao.loadAll().size)
+    fun isPhotoListEmpty() {
+        assertEquals(0, mDatabase.photoDao.loadAll().size)
     }
-
 
     @Test
     @Throws(Exception::class)
@@ -48,7 +47,6 @@ class PhotoDaoTest {
         val insertedPhoto = mDatabase.photoDao.insert(photo)
         assertNotNull(insertedPhoto)
     }
-
 
     @Test
     @Throws(Exception::class)
@@ -63,20 +61,19 @@ class PhotoDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun retrievesPhotos(){
+    fun retrievesPhotos() {
         val photoList = TestUtil.makePhotoList(5)
         photoList.forEach {
             mDatabase.photoDao.insert(it)
         }
 
         val loadedPhotos = mDatabase.photoDao.loadAll()
-        assertEquals(photoList,loadedPhotos)
+        assertEquals(photoList, loadedPhotos)
     }
-
 
     @Test
     @Throws(Exception::class)
-    fun deletePhoto(){
+    fun deletePhoto() {
         val photo = TestUtil.createPhoto(8)
         mDatabase.photoDao.delete(photo)
 
@@ -86,11 +83,9 @@ class PhotoDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun deleteAllPhotos(){
+    fun deleteAllPhotos() {
         mDatabase.photoDao.deleteAll()
         val loadedAllPhotos = mDatabase.photoDao.loadAll()
         assert(loadedAllPhotos.isEmpty())
     }
-
-
 }

@@ -13,13 +13,16 @@ fun ImageView.loadImage(url: String, progressBar: ProgressBar) =
     Picasso.get()
         .load(url)
         .placeholder(android.R.color.white)
-        .into(this, object : Callback {
+        .into(
+            this,
+            object : Callback {
 
-            override fun onError(e: java.lang.Exception?) {
-                e?.printStackTrace()
-            }
+                override fun onError(e: java.lang.Exception?) {
+                    e?.printStackTrace()
+                }
 
-            override fun onSuccess() {
-                progressBar.visibility = View.GONE
+                override fun onSuccess() {
+                    progressBar.visibility = View.GONE
+                }
             }
-        })
+        )
