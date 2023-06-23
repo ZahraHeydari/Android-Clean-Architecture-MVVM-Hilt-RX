@@ -3,26 +3,18 @@ package com.android.artgallery.presentation
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
+import coil.api.load
+import coil.decode.DataSource
+import coil.request.Request
 
-fun ImageView.loadImageFull(url: String?) =
-    Picasso.get().load(url).into(this)
+fun ImageView.loadImage(url: String?) = this.load(url)
 
-fun ImageView.loadImage(url: String, progressBar: ProgressBar) =
-    Picasso.get()
-        .load(url)
-        .placeholder(android.R.color.white)
-        .into(
-            this,
-            object : Callback {
-
-                override fun onError(e: java.lang.Exception?) {
-                    e?.printStackTrace()
-                }
-
-                override fun onSuccess() {
-                    progressBar.visibility = View.GONE
-                }
-            }
-        )
+fun ImageView.loadImage(url: String, progressBar: ProgressBar) = this.load(url) {
+    crossfade(true)
+    listener(object : Request.Listener {
+        override fun onSuccess(data: Any, source: DataSource) {
+            super.onSuccess(data, source)
+            progressBar.visibility = View.GONE
+        }
+    })
+}

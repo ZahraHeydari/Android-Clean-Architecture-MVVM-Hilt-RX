@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 /**
  * A helper class for the UI controller that is responsible for
- * preparing data for [PhotoDetailActivity]
+ * preparing data for [PhotoDetailFragment]
  *
  * @author ZARA
  * */

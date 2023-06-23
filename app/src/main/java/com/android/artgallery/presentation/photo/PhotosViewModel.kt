@@ -37,8 +37,4 @@ class PhotosViewModel @Inject constructor(
             }
         )
     }
-
-    companion object {
-        private val TAG = PhotosViewModel::class.java.simpleName
-    }
 }

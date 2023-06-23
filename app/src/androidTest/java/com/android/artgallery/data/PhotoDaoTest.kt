@@ -5,7 +5,7 @@ import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
 import com.android.artgallery.data.source.local.AppDatabase
 import com.android.artgallery.domain.model.Photo
-import com.android.artgallery.util.TestUtil
+import com.android.artgallery.TestUtil
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull

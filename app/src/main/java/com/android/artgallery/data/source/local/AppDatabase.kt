@@ -9,7 +9,6 @@ import com.android.artgallery.data.source.local.entity.PhotoEntity
  * To manage data items that can be accessed, updated
  * & maintain relationships between them
  *
- * @Created by ZARA
  */
 @Database(entities = [PhotoEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {

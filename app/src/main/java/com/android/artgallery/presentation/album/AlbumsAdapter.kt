@@ -2,10 +2,7 @@ package com.android.artgallery.presentation.album
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.android.artgallery.R
 import com.android.artgallery.databinding.HolderAlbumBinding
 import com.android.artgallery.domain.model.Album
 import com.android.artgallery.presentation.album.AlbumsAdapter.AlbumViewHolder
@@ -14,9 +11,8 @@ import com.android.artgallery.presentation.album.AlbumsAdapter.AlbumViewHolder
  * This class is responsible for converting each data entry [Album]
  * into [AlbumViewHolder] that can then be added to the AdapterView.
  *
- * Created by ZARA on 27/01/2019.
  */
-internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
+internal class AlbumsAdapter(val onAlbumClick: (Album) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val albums: MutableList<Album> = ArrayList()
@@ -26,8 +22,8 @@ internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
      * is used to initialize ViewHolders
      * */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val holderAlbumBinding = DataBindingUtil.inflate<ViewDataBinding>(
-            LayoutInflater.from(parent.context), R.layout.holder_album, parent, false
+        val holderAlbumBinding = HolderAlbumBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
         )
         return AlbumViewHolder(holderAlbumBinding)
     }
@@ -39,16 +35,12 @@ internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
         (holder as AlbumViewHolder).onBind(getItem(position))
     }
 
-    private fun getItem(position: Int): Album {
-        return albums[position]
-    }
+    private fun getItem(position: Int): Album = albums[position]
 
     /*
      * This method returns the size of collection that contains the items we want to display
      * */
-    override fun getItemCount(): Int {
-        return albums.size
-    }
+    override fun getItemCount() = albums.size
 
     fun addData(list: List<Album>) {
         this.albums.clear()
@@ -56,17 +48,14 @@ internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
         notifyDataSetChanged()
     }
 
-    inner class AlbumViewHolder(
-        private val dataBinding: ViewDataBinding
-    ) : RecyclerView.ViewHolder(dataBinding.root) {
+    inner class AlbumViewHolder(private val binding: HolderAlbumBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(album: Album) {
-            val holderAlbumBinding = dataBinding as HolderAlbumBinding
-            val albumViewModel = AlbumViewModel(album)
-            holderAlbumBinding.albumViewModel = albumViewModel
+            binding.holderAlbumTextView.text = album.title
 
             itemView.setOnClickListener {
-                mListener.showPhotos(album)
+                onAlbumClick.invoke(album)
             }
         }
     }

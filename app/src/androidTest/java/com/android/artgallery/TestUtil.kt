@@ -1,4 +1,4 @@
-package com.android.artgallery.util
+package com.android.artgallery
 
 import com.android.artgallery.domain.model.Photo
 

@@ -1,91 +1,73 @@
 package com.android.artgallery.presentation.album
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.android.artgallery.R
 import com.android.artgallery.databinding.FragmentAlbumsBinding
 import com.android.artgallery.domain.model.Album
-import com.android.artgallery.presentation.gallery.OnGalleryCallback
+import com.android.artgallery.presentation.photo.PhotosFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AlbumsFragment : Fragment(), OnAlbumsAdapterListener {
+class AlbumsFragment : Fragment() {
 
-    private lateinit var fragmentAlbumsBinding: FragmentAlbumsBinding
+    private lateinit var binding: FragmentAlbumsBinding
     private var adapter: AlbumsAdapter? = null
-    private var mCallback: OnGalleryCallback? = null
-
     private val viewModel: AlbumsViewModel by viewModels()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnGalleryCallback) {
-            mCallback = context
-        } else throw ClassCastException(context.toString() + "must implement OnGalleryCallback!")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        adapter = AlbumsAdapter(this)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentAlbumsBinding.inflate(inflater, container, false)
+        adapter = AlbumsAdapter { navigateToPhotosPage(it) }
+        binding.albumsRecyclerView.adapter = adapter
         viewModel.loadAlbums()
+        return binding.root
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        fragmentAlbumsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_albums, container, false)
-        fragmentAlbumsBinding.albumsViewModel = viewModel
-        fragmentAlbumsBinding.albumsRecyclerView.adapter = adapter
-
-        viewModel.isLoad.observe(
-            viewLifecycleOwner,
-            Observer {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(viewModel) {
+            isLoad.observe(viewLifecycleOwner) {
                 it?.let { visibility ->
-                    fragmentAlbumsBinding.albumsProgressBar.visibility = if (visibility) View.GONE else View.VISIBLE
+                    binding.albumsProgressBar.visibility =
+                        if (visibility) View.GONE else View.VISIBLE
                 }
             }
-        )
 
-        viewModel.albumsReceivedLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
+            albumsReceivedLiveData.observe(viewLifecycleOwner) {
                 it?.let {
-                    initRecyclerView(it)
+                    adapter?.addData(it)
                 }
             }
+        }
+    }
+
+    private fun navigateToPhotosPage(album: Album) {
+        activity?.supportFragmentManager?.beginTransaction()?.replace(
+            R.id.gallery_container,
+            PhotosFragment.newInstance(album.id),
+            PhotosFragment.FRAGMENT_NAME
         )
-
-        return fragmentAlbumsBinding.root
-    }
-
-    override fun showPhotos(album: Album) {
-        mCallback?.navigateToAlbumPage(album)
-    }
-
-    private fun initRecyclerView(albums: List<Album>) {
-        adapter?.addData(albums)
+            ?.addToBackStack(PhotosFragment.FRAGMENT_NAME)
+            ?.commitAllowingStateLoss()
     }
 
     override fun onDetach() {
         super.onDetach()
         adapter = null
-        mCallback = null
     }
 
     companion object {
-
-        val FRAGMENT_NAME = AlbumsFragment::class.java.name
+        val FRAGMENT_NAME: String = AlbumsFragment::class.java.name
 
         @JvmStatic
-        fun newInstance() =
-            AlbumsFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
+        fun newInstance() = AlbumsFragment()
     }
 }

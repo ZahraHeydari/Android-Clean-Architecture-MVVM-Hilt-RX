@@ -15,12 +15,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class PhotoDetailActivityTest {
+class PhotoDetailFragmentTest {
 
     val STRING_TO_BE_TYPED = "Espresso"
 
     @get:Rule
-    var activityRule = ActivityTestRule(PhotoDetailActivity::class.java)
+    var activityRule = ActivityTestRule(PhotoDetailFragment::class.java)
 
     @Test
     fun isFabDisplayed() {

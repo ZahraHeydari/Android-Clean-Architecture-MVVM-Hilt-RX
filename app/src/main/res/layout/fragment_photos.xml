@@ -1,33 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <data>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/photos_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2" />
 
-        <import type="android.view.View"/>
+    <ProgressBar
+        android:id="@+id/photos_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
-        <variable name="photosViewModel" type="com.android.artgallery.presentation.photo.PhotosViewModel"/>
-
-    </data>
-
-    <FrameLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/photos_recycler_view"/>
-
-        <ProgressBar
-                android:id="@+id/photos_progress_bar"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-    </FrameLayout>
-
-
-</layout>
+</FrameLayout>
