@@ -6,8 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
-        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/atlantic</item>
+        <item name="android:windowContentTransitions" >true</item>
+        <item name="android:fontFamily" >@font/atlantic</item>
     </style>
 
 

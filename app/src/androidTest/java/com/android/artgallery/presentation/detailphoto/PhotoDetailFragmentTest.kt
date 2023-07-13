@@ -20,7 +20,7 @@ class PhotoDetailFragmentTest {
     val STRING_TO_BE_TYPED = "Espresso"
 
     @get:Rule
-    var activityRule = ActivityTestRule(PhotoDetailFragment::class.java)
+    var activityRule = ActivityTestRule(com.android.presentation.detailphoto.PhotoDetailFragment::class.java)
 
     @Test
     fun isFabDisplayed() {

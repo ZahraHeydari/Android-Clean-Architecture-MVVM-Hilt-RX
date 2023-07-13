@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".presentation.gallery.GalleryActivity"
+            android:name="com.android.presentation.gallery.GalleryActivity"
             android:exported="true"
             android:theme="@style/NoTheme">
             <intent-filter>

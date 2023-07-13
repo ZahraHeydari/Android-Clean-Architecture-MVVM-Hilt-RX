@@ -15,7 +15,7 @@ import org.junit.runner.RunWith
 class GalleryActivityTest {
 
     @get:Rule
-    var activityRule = ActivityTestRule(GalleryActivity::class.java)
+    var activityRule = ActivityTestRule(com.android.presentation.gallery.GalleryActivity::class.java)
 
     @Test
     fun container_IsDisplayed() {

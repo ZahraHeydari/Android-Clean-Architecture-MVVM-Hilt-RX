@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#48a999</color>
+    <color name="colorPrimaryDark">#004c40</color>
+    <color name="colorAccent">#FFDE54</color>
+    <color name="blue">#0336FF</color>
+    <color name="colorTextPrimary">#202020</color>
+    <color name="colorTextSecondary">#737373</color>
+    <color name="gainsBoro">#b9b9b9</color>
+    <color name="whiteSmoke">#f4f4f4</color>
+    <color name="white">#FFFFFF</color>
+    <color name="golden">#ffc800</color>
+    <color name="lightGray">#eaeaea</color>
+    <color name="transparent">#5a000000</color>
+</resources>
