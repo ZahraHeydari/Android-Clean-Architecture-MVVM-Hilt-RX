@@ -1,18 +1,18 @@
-package com.android.artgallery
+package com.android.data
 
-import com.android.domain.model.Photo
+import com.android.data.source.local.entity.PhotoEntity
 
 object TestUtil {
 
-    fun createPhoto(id: Long) = com.android.domain.model.Photo(
+    fun createPhoto(id: Long) = PhotoEntity(
         id = id,
         title = "",
         url = "",
         thumbnailUrl = ""
     )
 
-    fun makePhotoList(size: Int): MutableList<com.android.domain.model.Photo> {
-        val list = ArrayList<com.android.domain.model.Photo>(size)
+    fun makePhotoList(size: Int): MutableList<PhotoEntity> {
+        val list = ArrayList<PhotoEntity>(size)
         list.forEach {
             it.title = "Photo ${list.indexOf(it)}"
             it.id = (list.indexOf(it) + 1).toLong()
